@@ -1,17 +1,19 @@
-package com.example.pregnancykotlin
+package com.example.pregnancykotlin.main
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.pregnancykotlin.R
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
+
 
 class MainActivity : AppCompatActivity() {
-    val str: String?=null
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        println("vahid")
     }
 
-    private fun test() {
-        val str: String
-    }
 }

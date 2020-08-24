@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    tools:ignore="UnusedNavigation"
+    app:startDestination="@id/phoneNumberFragment2">
+
+    <fragment
+        android:id="@+id/phoneNumberFragment2"
+        android:name="com.example.pregnancykotlin.login.PhoneNumberFragment"
+        android:label="fragment_phone_number"
+        tools:layout="@layout/fragment_phone_number" >
+        <action
+            android:id="@+id/action_phoneNumberFragment2_to_validateFragment"
+            app:destination="@id/validateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/validateFragment"
+        android:name="com.example.pregnancykotlin.login.ValidateFragment"
+        android:label="fragment_validate"
+        tools:layout="@layout/fragment_validate" />
+</navigation>

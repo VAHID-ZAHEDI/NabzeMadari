@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".login.ValidateFragment">
+
+    <com.mukesh.OtpView
+        android:id="@+id/otp_view"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:itemBackground="@color/white"
+        android:textColor="@color/colorPrimary"
+        app:OtpItemCount="6"
+        app:OtpLineColor="@color/colorPrimary"
+        app:OtpViewType="line" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

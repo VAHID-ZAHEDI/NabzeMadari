@@ -1,4 +1,5 @@
 package com.example.pregnancykotlin.models
 
-class TokenInfo {
-}
+data class TokenInfo(
+    var accessToken: String? = null
+)
