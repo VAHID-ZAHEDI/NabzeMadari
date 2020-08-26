@@ -23,5 +23,9 @@
             android:id="@+id/action_validateFragment3_to_mainFragment2"
             app:destination="@id/mainFragment2" />
     </fragment>
-
+    <fragment
+        android:id="@+id/mainFragment2"
+        android:name="com.example.pregnancykotlin.login.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>

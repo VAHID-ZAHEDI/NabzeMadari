@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.enum.Status
 import com.example.pregnancykotlin.login.adapters.ViewPagerAdapter
@@ -24,5 +25,7 @@ class LoginActivity : AppCompatActivity() {
         vp_login.isUserInputEnabled = false
         val fragments = arrayOf(PhoneNumberFragment(), ValidateFragment())
         vp_login.adapter = ViewPagerAdapter(supportFragmentManager, fragments, lifecycle)
+        findNavController(R.id.nav_host)
+//                                ?.navigate(R.id.validateFragment, args)
     }
 }

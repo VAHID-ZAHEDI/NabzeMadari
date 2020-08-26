@@ -7,10 +7,16 @@ import io.reactivex.Single
 
 class ApiLoginDataSource : LoginDataSource {
     private var apiService: ApiService = ApiProvider.apiProvider()!!
-     override fun login(phoneNumber: String?): Single<TokenInfo> {
+    override fun login(phoneNumber: String?): Single<TokenInfo> {
         return apiService.singInWithPhoneNumber(phoneNumber)
     }
-    fun generateCode(phoneNumber: String):Single<SmsCode>{
+
+    override fun generateCode(phoneNumber: String): Single<SmsCode> {
         return apiService.generateOtpCode(phoneNumber)
     }
+
+    override fun validateCode(phoneNumber: String, otpCode: String): Single<TokenInfo> {
+        return apiService.validateOtpCode(phoneNumber, otpCode)
+    }
+
 }

@@ -13,11 +13,13 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import javax.inject.Inject
 
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel @Inject constructor() : ViewModel() {
     private val loginRepository = LoginRepository()
     private var compositeDisposable = CompositeDisposable()
+
     fun login(phoneNumber: String): MutableLiveData<Resource<TokenInfo>> {
         var result: MutableLiveData<Resource<TokenInfo>> = MutableLiveData()
         result.value = Resource.loading()
@@ -62,4 +64,7 @@ class LoginViewModel : ViewModel() {
             })
         return result
     }
+//    fun validateCode(phoneNumber: String,otp :String):MutableLiveData<TokenInfo>{
+////        var result:MutableLiveData<TokenInfo>=
+//    }
 }

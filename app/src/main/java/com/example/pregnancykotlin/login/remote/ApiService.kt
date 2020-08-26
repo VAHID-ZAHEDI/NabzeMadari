@@ -16,6 +16,14 @@ interface ApiService {
     @FormUrlEncoded
     fun generateOtpCode(@Field("phoneNumber") phoneNumber: String): Single<SmsCode>
 
+    @POST("/validateOtp")
+    @FormUrlEncoded
+    fun validateOtpCode(
+        @Field("phoneNumber") phoneNumber: String,
+        @Field("otp") otp: String
+    ): Single<TokenInfo>
+
+
     @POST("api/auth/signin")
     @FormUrlEncoded
     fun singInWithPhoneNumber(@Field("phoneNumber") phoneNumber: String?): Single<TokenInfo>

@@ -4,10 +4,10 @@ import com.example.pregnancykotlin.network.ApiClient
 
 class ApiProvider {
     companion object {
-        var apiService: ApiService?= null
+        var apiService: ApiService? = null
         fun apiProvider(): ApiService? {
             if (apiService == null) {
-                apiService = ApiClient.client?.create(ApiService::class.java)
+                apiService = ApiClient.provideRetrofit()?.create(ApiService::class.java)
             }
             return apiService
         }

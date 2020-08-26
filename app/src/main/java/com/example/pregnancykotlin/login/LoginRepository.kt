@@ -12,7 +12,13 @@ class LoginRepository : LoginDataSource {
         return apiLoginDataSource.login(phoneNumber)
     }
 
+    override
     fun generateCode(phoneNumber: String): Single<SmsCode> {
         return apiLoginDataSource.generateCode(phoneNumber)
+    }
+
+    override
+    fun validateCode(phoneNumber: String, otp: String): Single<TokenInfo> {
+        return apiLoginDataSource.validateCode(phoneNumber, otp)
     }
 }
