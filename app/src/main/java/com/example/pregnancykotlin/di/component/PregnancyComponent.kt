@@ -6,6 +6,7 @@ import com.example.pregnancykotlin.login.LoginViewModel
 import com.example.pregnancykotlin.network.ApiClient
 import com.example.pregnancykotlin.utilities.SafePref
 import com.example.pregnancykotlin.utilities.Zcript
+import com.google.gson.Gson
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

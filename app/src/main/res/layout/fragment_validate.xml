@@ -1,22 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_gravity="center|top"
+    android:orientation="vertical"
     tools:context=".login.ValidateFragment">
 
-    <com.mukesh.OtpView
-        android:id="@+id/otp_view"
-        android:layout_width="300dp"
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="60dp"
         android:gravity="center"
-        android:inputType="number"
-        android:itemBackground="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:focusedByDefault="true"
+        android:lineSpacingExtra="7dp"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/pv_otp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <com.chaos.view.PinView-->
+<!--        android:id="@+id/pv_otp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:focusable="true"-->
+<!--        android:focusableInTouchMode="true"-->
+<!--        android:inputType="number"-->
+<!--        android:padding="10dp"-->
+<!--        android:textColor="@color/colorPrimary"-->
+<!--        android:textSize="25dp"-->
+<!--        app:hideLineWhenFilled="false"-->
+<!--        app:itemCount="6"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.429"-->
+<!--        app:viewType="line" />-->
+
+    <com.mukesh.OtpView
+        android:id="@+id/pv_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:defaultFocusHighlightEnabled="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:focusedByDefault="true"
+        android:inputType="numberDecimal"
         android:textColor="@color/colorPrimary"
         app:OtpItemCount="6"
+        android:textSize="18sp"
         app:OtpLineColor="@color/colorPrimary"
-        app:OtpViewType="line" />
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+        app:OtpViewType="line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
+</androidx.constraintlayout.widget.ConstraintLayout>

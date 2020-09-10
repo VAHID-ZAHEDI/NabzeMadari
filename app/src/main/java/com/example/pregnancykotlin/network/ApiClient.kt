@@ -23,16 +23,16 @@ object ApiClient {
     @Provides
     fun provideRetrofit(): Retrofit? {
         return Retrofit.Builder().baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .client(
-                OkHttpClient().newBuilder()
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .writeTimeout(60, TimeUnit.SECONDS)
-                    .connectTimeout(60, TimeUnit.SECONDS)
-                    .build()
-            )
-            .build()
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
+                .client(
+                        OkHttpClient().newBuilder()
+                                .readTimeout(30, TimeUnit.SECONDS)
+                                .writeTimeout(30, TimeUnit.SECONDS)
+                                .connectTimeout(30, TimeUnit.SECONDS)
+                                .build()
+                )
+                .build()
 //        }
 
 //        @Provides

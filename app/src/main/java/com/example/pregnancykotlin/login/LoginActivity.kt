@@ -22,10 +22,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        vp_login.isUserInputEnabled = false
-        val fragments = arrayOf(PhoneNumberFragment(), ValidateFragment())
-        vp_login.adapter = ViewPagerAdapter(supportFragmentManager, fragments, lifecycle)
-        findNavController(R.id.nav_host)
-//                                ?.navigate(R.id.validateFragment, args)
+//        vp_login.isUserInputEnabled = false
+//        val fragments = arrayOf(PhoneNumberFragment(), ValidateFragment())
+//        vp_login.adapter = ViewPagerAdapter(supportFragmentManager, fragments, lifecycle)
+
     }
 }

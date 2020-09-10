@@ -19,7 +19,7 @@ class AppConfig : Application() {
                 .addInterceptor(
                     CalligraphyInterceptor(
                         CalligraphyConfig.Builder()
-                            .setDefaultFontPath("Yekan.ttf")
+                            .setDefaultFontPath("Vazir.ttf")
                             .setFontAttrId(R.attr.fontPath)
                             .build()
                     )

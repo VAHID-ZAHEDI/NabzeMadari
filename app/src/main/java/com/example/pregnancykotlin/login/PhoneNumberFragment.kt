@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
 import com.example.pregnancykotlin.enum.Status
@@ -58,11 +60,17 @@ class PhoneNumberFragment : Fragment() {
                         Status.LOADING -> Dialogs.showLoadingDialog(activity as Context)
                         Status.SUCCESS -> {
                             Dialogs.dismissLoadingDialog()
-                            var args = Bundle()
-                            args.putString("code", it.data?.code)
-                            args.putString("phoneNumber", phoneNumber)
-                            activity?.findNavController(R.id.nav_host)
-                                ?.navigate(R.id.validateFragment, args)
+//                            var args = Bundle()
+//                            args.putString("code", it.data?.code)
+//                            args.putString("phoneNumber", phoneNumber)
+//                            val nav = activity?.findNavController(R.id.nav_host)
+//                            nav?.navigate(R.id.validateFragment, args)
+                            val action = PhoneNumberFragmentDirections.navigateToValidateFragment(
+                                phoneNumber.replace(" ", "")
+                            )
+                            Navigation.findNavController(view).navigate(action)
+//                            val viewpager = activity?.findViewById<ViewPager2>(R.id.vp_login)
+//                            viewpager!!.currentItem++
                         }
 
                     }

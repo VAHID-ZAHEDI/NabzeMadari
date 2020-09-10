@@ -8,7 +8,7 @@ class ApiProvider {
         fun apiProvider(): ApiService? {
             if (apiService == null) {
                 apiService = ApiClient.provideRetrofit()?.create(ApiService::class.java)
-            }
+            } 
             return apiService
         }
     }

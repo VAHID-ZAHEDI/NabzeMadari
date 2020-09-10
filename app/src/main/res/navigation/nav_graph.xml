@@ -2,26 +2,53 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph_home"
-    app:startDestination="@id/phoneNumberFragment2">
-
+    android:id="@+id/nav_host"
+    app:startDestination="@id/phoneNumberFragment">
     <fragment
-        android:id="@+id/phoneNumberFragment2"
+        android:id="@+id/phoneNumberFragment"
         android:name="com.example.pregnancykotlin.login.PhoneNumberFragment"
         android:label="fragment_phone_number"
-        tools:layout="@layout/fragment_phone_number" >
+        tools:layout="@layout/fragment_phone_number">
         <action
-            android:id="@+id/action_phoneNumberFragment2_to_validateFragment3"
-            app:destination="@id/validateFragment" />
+            android:id="@+id/navigateToValidateFragment"
+            app:destination="@id/validateFragment"
+            app:enterAnim="@anim/my_anim"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/validateFragment"
         android:name="com.example.pregnancykotlin.login.ValidateFragment"
         android:label="fragment_validate"
-        tools:layout="@layout/fragment_validate" >
+        tools:layout="@layout/fragment_validate">
         <action
-            android:id="@+id/action_validateFragment3_to_mainFragment2"
-            app:destination="@id/mainFragment2" />
+            android:id="@+id/navigateToPhoneNumberFragment"
+            app:destination="@id/phoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <argument
+            android:name="phoneNumber"
+            app:argType="string"
+            android:defaultValue="5677" />
+        <action
+            android:id="@+id/action_validateFragment_to_signUpUserFragment"
+            app:destination="@id/signUpUserFragment"
+            app:enterAnim="@anim/my_anim"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_validateFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/signUpUserFragment"
+        android:name="com.example.pregnancykotlin.SignUpUserFragment"
+        android:label="fragment_sign_up_user"
+        tools:layout="@layout/fragment_sign_up_user" >
+        <action
+            android:id="@+id/action_signUpUserFragment_to_phoneNumberFragment"
+            app:destination="@id/phoneNumberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.pregnancykotlin.login.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>
