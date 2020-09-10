@@ -3,19 +3,19 @@ package com.example.pregnancykotlin.login
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.login.remote.Resource
 import com.example.pregnancykotlin.models.ErrorModel
+import com.example.pregnancykotlin.models.ErrorTest
 import com.example.pregnancykotlin.models.SmsCode
 import com.example.pregnancykotlin.models.TokenInfo
 import com.example.pregnancykotlin.network.RetrofitException
 import com.google.gson.Gson
+import com.google.gson.TypeAdapter
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.ResponseBody
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -85,17 +85,15 @@ class LoginViewModel @Inject constructor() : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
+                    if (e is HttpException) {
+                        val body = e.response()?.errorBody()
+                        val gson = Gson()
+                        val adapter: TypeAdapter<ErrorTest> =
+                            gson.getAdapter(ErrorTest::class.java)
+                        val errorBody: ErrorTest = adapter.fromJson(body!!.string())
 
-//                    if (e is HttpException) {
-//                        val body = e.response()?.errorBody() as ResponseBody
-//                        var gson = Gson()
-//                        val error = gson.fromJson(body.toString(), ErrorModel::class.java)
-////                        val errorBody = gson.fromJson(body.toString(), ErrorModel::class.java)
-//
-//                        Log.d("ddd", "onError: ${er}")
-//
-//
-//                    }
+                        Log.d("mehdi", "onError: ${errorBody.message}")
+                    }
                     if(e is RetrofitException){
                         val body = e.getErrorData()
                         var gson = Gson()
