@@ -1,4 +1,4 @@
-package com.example.pregnancykotlin.login
+package com.example.pregnancykotlin.login.view
 
 import android.content.Context
 import android.os.Bundle
@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.viewpager2.widget.ViewPager2
 import com.example.pregnancykotlin.R
-import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
+import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
+import com.example.pregnancykotlin.login.LoginViewModel
 import com.example.pregnancykotlin.utilities.Dialogs
 import kotlinx.android.synthetic.main.fragment_phone_number.*
 
@@ -48,8 +47,7 @@ class PhoneNumberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val loginViewModel: LoginViewModel =
-            DaggerPregnancyComponent.builder().setContext(activity as Context).build()
-                .getLoginViewModel()
+            DaggerInstanceComponent.builder().build().getLoginViewModel()
         bt_send.setOnClickListener(View.OnClickListener {
             var phoneNumber = et_phoneNumber.text.toString()
             loginViewModel!!.generateCode(phoneNumber.replace(" ", "")).observe(
@@ -65,9 +63,10 @@ class PhoneNumberFragment : Fragment() {
 //                            args.putString("phoneNumber", phoneNumber)
 //                            val nav = activity?.findNavController(R.id.nav_host)
 //                            nav?.navigate(R.id.validateFragment, args)
-                            val action = PhoneNumberFragmentDirections.navigateToValidateFragment(
-                                phoneNumber.replace(" ", "")
-                            )
+                            val action =
+                                PhoneNumberFragmentDirections.navigateToValidateFragment(
+                                    phoneNumber.replace(" ", "")
+                                )
                             Navigation.findNavController(view).navigate(action)
 //                            val viewpager = activity?.findViewById<ViewPager2>(R.id.vp_login)
 //                            viewpager!!.currentItem++

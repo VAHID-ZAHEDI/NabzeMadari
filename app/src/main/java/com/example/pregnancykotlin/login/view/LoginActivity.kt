@@ -1,23 +1,15 @@
-package com.example.pregnancykotlin.login
+package com.example.pregnancykotlin.login.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
+import com.example.pregnancykotlin.BaseActivity
 import com.example.pregnancykotlin.R
-import com.example.pregnancykotlin.enum.Status
-import com.example.pregnancykotlin.login.adapters.ViewPagerAdapter
-import com.example.pregnancykotlin.models.SmsCode
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
-import kotlinx.android.synthetic.main.activity_login.*
 
 
-class LoginActivity : AppCompatActivity() {
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
-    }
+class LoginActivity : BaseActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

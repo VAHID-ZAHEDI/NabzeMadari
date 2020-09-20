@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center|top"
     android:orientation="vertical"
-    tools:context=".login.ValidateFragment">
+    tools:context=".login.view.ValidateFragment">
 
     <TextView
         android:id="@+id/tv_info"

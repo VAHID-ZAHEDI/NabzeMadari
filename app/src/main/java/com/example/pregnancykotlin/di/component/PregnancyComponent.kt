@@ -16,7 +16,7 @@ interface PregnancyComponent {
     fun getZcrypt(): Zcript
     fun getSafePref(): SafePref
 
-    fun getLoginViewModel(): LoginViewModel
+
 
     @Component.Builder
     interface Builder {

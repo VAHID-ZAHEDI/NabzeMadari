@@ -3,6 +3,7 @@ package com.example.pregnancykotlin.login
 import com.example.pregnancykotlin.login.remote.ApiLoginDataSource
 import com.example.pregnancykotlin.models.SmsCode
 import com.example.pregnancykotlin.models.TokenInfo
+import com.example.pregnancykotlin.models.User
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -19,7 +20,11 @@ class LoginRepository : LoginDataSource {
     }
 
     override
-    fun validateCode(phoneNumber: String, otp: String): Single<TokenInfo> {
+    fun validateCode(phoneNumber: String, otp: String): Single<User> {
         return apiLoginDataSource.validateCode(phoneNumber, otp)
+    }
+
+    override fun signUp(user: User): Single<User> {
+       return apiLoginDataSource.signUp(user)
     }
 }

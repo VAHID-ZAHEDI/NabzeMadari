@@ -6,7 +6,7 @@
     app:startDestination="@id/phoneNumberFragment">
     <fragment
         android:id="@+id/phoneNumberFragment"
-        android:name="com.example.pregnancykotlin.login.PhoneNumberFragment"
+        android:name="com.example.pregnancykotlin.login.view.PhoneNumberFragment"
         android:label="fragment_phone_number"
         tools:layout="@layout/fragment_phone_number">
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/validateFragment"
-        android:name="com.example.pregnancykotlin.login.ValidateFragment"
+        android:name="com.example.pregnancykotlin.login.view.ValidateFragment"
         android:label="fragment_validate"
         tools:layout="@layout/fragment_validate">
         <action
@@ -39,16 +39,19 @@
     </fragment>
     <fragment
         android:id="@+id/signUpUserFragment"
-        android:name="com.example.pregnancykotlin.SignUpUserFragment"
+        android:name="com.example.pregnancykotlin.login.view.SignUpUserFragment"
         android:label="fragment_sign_up_user"
         tools:layout="@layout/fragment_sign_up_user" >
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
         <action
-            android:id="@+id/action_signUpUserFragment_to_phoneNumberFragment"
-            app:destination="@id/phoneNumberFragment" />
+            android:id="@+id/action_signUpUserFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.pregnancykotlin.login.MainFragment"
+        android:name="com.example.pregnancykotlin.main.view.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
 </navigation>

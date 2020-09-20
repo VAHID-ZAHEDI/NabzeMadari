@@ -1,9 +1,8 @@
-package com.example.pregnancykotlin.login
+package com.example.pregnancykotlin.login.view
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.pregnancykotlin.R
-import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
+import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
-import com.example.pregnancykotlin.login.remote.Resource
-import com.example.pregnancykotlin.main.MainActivity
+
+import com.example.pregnancykotlin.main.view.MainActivity
 import com.example.pregnancykotlin.utilities.Dialogs
 import com.example.pregnancykotlin.utilities.Ui
 import kotlinx.android.synthetic.main.fragment_validate.*
@@ -72,22 +71,38 @@ class ValidateFragment : Fragment() {
             )
 
         pv_otp.setOtpCompletionListener {
-            DaggerPregnancyComponent.builder().setContext(activity as Context).build()
-                .getLoginViewModel()
+            val loginViewModel =
+                DaggerInstanceComponent.builder().build()
+            loginViewModel.getLoginViewModel()
                 .validateCode(args.phoneNumber, it.toString())
                 .observe(viewLifecycleOwner, Observer {
                     when (it.status) {
                         Status.LOADING -> Dialogs.showLoadingDialog(activity as Context)
                         Status.SUCCESS -> {
                             Dialogs.dismissLoadingDialog()
-                            Log.d("bvbvb", "Success: ${it.data?.accessToken}")
-                            val action =
-                                ValidateFragmentDirections.actionValidateFragmentToSignUpUserFragment()
-                            Navigation.findNavController(view).navigate(action)
+                            Log.d("zzx", "onViewCreated: ${it.data!!.isRegister}")
+                            if (it.data!!.isRegister) {
+
+                                loginViewModel.getLoginViewModel().login(args.phoneNumber)
+                                    .observe(viewLifecycleOwner, Observer {
+                                        Log.d("accessT", "onViewCreated: ${it.data?.accessToken}")
+                                        startActivity(Intent(activity, MainActivity::class.java))
+                                        activity?.finish()
+                                    })
+                            } else {
+                                val action =
+                                    ValidateFragmentDirections.actionValidateFragmentToSignUpUserFragment(
+                                        args.phoneNumber
+                                    )
+                                Navigation.findNavController(view).navigate(action)
+                            }
+
 
                         }
                         Status.ERROR -> {
-                            Log.d("uuu", "onViewCreated: ${it.message?.httpErrorCode}")
+                            Log.d("uuu", "onViewCreated: ${it.error?.httpErrorCode}")
+                            Toast.makeText(context, it.error?.message, Toast.LENGTH_LONG).show()
+                            pv_otp.clearComposingText()
                             Dialogs.dismissLoadingDialog()
 
                         }
@@ -96,24 +111,4 @@ class ValidateFragment : Fragment() {
 
         }
     }
-
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment ValidateFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            ValidateFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
 }
