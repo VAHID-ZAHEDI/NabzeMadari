@@ -21,6 +21,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun dismissLoadingDialog() {
+
         Dialogs.dismissLoadingDialog()
     }
 }

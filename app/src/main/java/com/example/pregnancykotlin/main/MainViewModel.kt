@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pregnancykotlin.login.remote.Resource
 import com.example.pregnancykotlin.models.ErrorTest
+import com.example.pregnancykotlin.models.SubTopic
 import com.example.pregnancykotlin.models.Topic
 import io.reactivex.Scheduler
 import io.reactivex.SingleObserver
@@ -40,6 +41,32 @@ class MainViewModel @Inject constructor() : ViewModel() {
                     result.value = Resource.error(ErrorTest(400, ""))
                 }
             })
+        return result
+    }
+
+    fun getSubTopicsById(
+        token: String,
+        topicId: String
+    ): MutableLiveData<Resource<ArrayList<SubTopic>>> {
+        var result: MutableLiveData<Resource<ArrayList<SubTopic>>> = MutableLiveData()
+        result.value = Resource.loading()
+        mainRepository.apiMainDataSource.getSubTopicsById(token, topicId)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<ArrayList<SubTopic>> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: ArrayList<SubTopic>) {
+                    result.value = Resource.success(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    result.value = Resource.error(ErrorTest(400, e.message.toString()))
+                }
+            })
+
         return result
     }
 }

@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".main.view.MainFragment">
 
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -20,4 +21,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.google.android.material.card.MaterialCardView>
+    <com.zkk.view.rulerview.RulerView
+        android:id="@+id/ruler_height"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:alphaEnable="false"
+        app:lineColor="@color/black"
+        android:clickable="true"
+        android:background="?selectableItemBackground"
+        app:lineWidth="2dip"
+        app:textColor="@color/black"
+        app:minValue="80.0"
+        app:maxValue="250.0"
+        app:perValue="1"
+        app:selectorValue="165.0"
+        />
 </LinearLayout>

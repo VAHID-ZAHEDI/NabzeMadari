@@ -10,6 +10,10 @@
         android:icon="@drawable/ic_layers"
         android:title="دسته بندی" />
     <item
+        android:id="@+id/calculatorFragment"
+        android:icon="@drawable/ic_keys"
+        android:title="محاسبه گر" />
+    <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_user"
         android:title="@string/title_info" />

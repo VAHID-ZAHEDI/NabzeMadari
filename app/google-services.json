@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1058296174335",
+    "firebase_url": "https://pregnancykotlin.firebaseio.com",
+    "project_id": "pregnancykotlin",
+    "storage_bucket": "pregnancykotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058296174335:android:749c642517e98251341eca",
+        "android_client_info": {
+          "package_name": "com.example.pregnancykotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058296174335-eii1vebnovmbhatgogjuosueqq7au0jr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pregnancykotlin",
+            "certificate_hash": "f382b10c7735327cb0ef373c61ef4ab3ee48937c"
+          }
+        },
+        {
+          "client_id": "1058296174335-rjmobfbrhouoehgekte9bbr0dfmkh6ps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5u48WDJS3vr8n4pcQ7DKV_O7AXcTxKNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058296174335-rjmobfbrhouoehgekte9bbr0dfmkh6ps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

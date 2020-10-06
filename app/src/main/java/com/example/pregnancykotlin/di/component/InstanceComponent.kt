@@ -1,5 +1,6 @@
 package com.example.pregnancykotlin.di.component
 
+import com.example.pregnancykotlin.calculator.CalculatorViewModel
 import com.example.pregnancykotlin.di.modules.TestModule
 import com.example.pregnancykotlin.login.LoginViewModel
 import com.example.pregnancykotlin.main.MainViewModel
@@ -11,4 +12,5 @@ import dagger.Component
 interface InstanceComponent {
     fun getLoginViewModel(): LoginViewModel
     fun getMainViewModel(): MainViewModel
+    fun getCalculatorViewModel():CalculatorViewModel
 }

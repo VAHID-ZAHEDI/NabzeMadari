@@ -5,9 +5,13 @@ import android.content.Context
 import android.os.StrictMode
 import android.view.LayoutInflater
 import com.example.pregnancykotlin.R
+import com.readystatesoftware.chuck.Chuck
+import com.readystatesoftware.chuck.ChuckInterceptor
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
+import okhttp3.OkHttpClient
+
 
 class AppConfig : Application() {
     override fun onCreate() {
@@ -26,6 +30,8 @@ class AppConfig : Application() {
                 )
                 .build()
         )
+
+//        startActivity(Chuck.getLaunchIntent(context))
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
     }

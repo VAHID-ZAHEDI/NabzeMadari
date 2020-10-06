@@ -22,5 +22,11 @@
     <style name="AppTheme.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Surface">
         <item name="colorOnPrimary">@android:color/white</item>
     </style>
-
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textStyle">bold</item>
+        <item name="font">@font/vazir</item>
+        <item name="fontFamily">@font/vazir</item>
+    </style>
 </resources>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".calculator.view.BmiFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp">
+
+        <LinearLayout
+            android:id="@+id/cl_bmi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="right"
+                android:text="@string/bmi_hint"
+                android:textColor="@color/material_on_primary_emphasis_medium"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_weight"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="7dp"
+                android:textColor="@color/white" />
+
+
+            <com.zjun.widget.RuleView
+                android:id="@+id/rule_weight"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="5dp"
+                app:gv_currentValue="70"
+                app:gv_maxValue="200"
+                app:gv_minValue="50"
+                app:zjun_bgColor="@color/transparent"
+                app:zjun_gradationColor="@color/height"
+                app:zjun_indicatorLineColor="@color/white"
+                app:zjun_textColor="@color/white"
+                app:zjun_textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical|left">
+
+                <com.github.lany192.picker.NumberPicker
+                    android:id="@+id/np_height"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    app:internalMaxHeight="130dp"
+                    app:internalMinWidth="150dp"
+                    app:selectionDivider="@color/height"
+                    app:selectionDividerHeight="1px"
+                    app:selectionDividersDistance="40dp"
+                    app:selectionTextColor="@color/white"
+                    app:selectionTextSize="16sp"
+                    app:solidColor="@android:color/transparent" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:src="@drawable/ic_height" />
+
+                <TextView
+                    android:id="@+id/tv_height"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bt_calculateBmi"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="7dp"
+                    android:text="محاسبه"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:cornerRadius="7dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/white" />
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:id="@+id/tv_bmi"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

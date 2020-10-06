@@ -2,6 +2,8 @@ package com.example.pregnancykotlin.network
 
 import com.example.pregnancykotlin.BuildConfig
 import com.example.pregnancykotlin.login.remote.ApiService
+import com.example.pregnancykotlin.utilities.AppConfig
+import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -22,6 +24,7 @@ object ApiClient {
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit? {
+
         return Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create())
@@ -30,6 +33,7 @@ object ApiClient {
                     .readTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(10, TimeUnit.SECONDS)
                     .connectTimeout(10, TimeUnit.SECONDS)
+                    .addInterceptor(ChuckInterceptor(AppConfig.context))
                     .build()
             )
             .build()

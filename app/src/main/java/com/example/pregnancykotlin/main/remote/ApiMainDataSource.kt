@@ -1,6 +1,7 @@
 package com.example.pregnancykotlin.main.remote
 
 import com.example.pregnancykotlin.main.MainDataSource
+import com.example.pregnancykotlin.models.SubTopic
 import com.example.pregnancykotlin.models.Topic
 import io.reactivex.Single
 
@@ -9,6 +10,10 @@ class ApiMainDataSource : MainDataSource {
     override fun getAllTopic(token: String): Single<List<Topic>>? {
         return mainApiService?.getAllTopics(token)
 
+    }
+
+    override fun getSubTopicsById(token: String, topicId: String): Single<ArrayList<SubTopic>>? {
+        return mainApiService?.getSubTopicsById(token,topicId)
     }
 
 }

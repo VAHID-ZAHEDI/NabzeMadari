@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs size="40dp"
+    space="6dp">
+
+    <tab
+        inactiveColor="@color/colorPrimary"
+        activeColor="@color/white"
+        drawable="@drawable/ic_bmi"/>
+
+    <tab
+        inactiveColor="@color/colorPrimary"
+        activeColor="@color/white"
+        drawable="@drawable/ic_bmi"/>
+
+    <tab
+        inactiveColor="@color/colorPrimary"
+        activeColor="@color/white"
+        drawable="@drawable/ic_bmi"/>
+
+
+</tabs>

@@ -24,21 +24,44 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
+            app:destination="@id/categoryFragment"
+            app:enterAnim="@anim/my_anim"
+            app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.example.pregnancykotlin.main.view.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" >
-        <action
-            android:id="@+id/action_categoryFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+        tools:layout="@layout/fragment_category"
+        app:popUpToInclusive="false">
         <action
             android:id="@+id/action_categoryFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_subHeaderFragment"
+            app:destination="@id/subHeaderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calculatorFragment"
+        android:name="com.example.pregnancykotlin.calculator.view.CalculatorFragment"
+        android:label="fragment_calculator"
+        tools:layout="@layout/fragment_calculator" />
+    <fragment
+        android:id="@+id/subHeaderFragment"
+        android:name="com.example.pregnancykotlin.main.view.SubTopicFragment"
+        android:label="fragment_sub_header"
+        tools:layout="@layout/fragment_sub_topic" >
+        <action
+            android:id="@+id/action_subHeaderFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <argument
+            android:name="topicId"
+            app:argType="string" />
     </fragment>
 </navigation>

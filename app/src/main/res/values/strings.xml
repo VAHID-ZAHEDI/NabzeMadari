@@ -8,4 +8,9 @@
     <string name="title_info">پروفایل</string>
     <string name="search">جستجو</string>
     <string name="testTitle">بهداشت فردی در بارداری</string>
+    <string name="bmi_hint">✦ وزن حتما باید قبل از هفته 12 ام بارداری باشد!</string>
+    <string name="Edd_hint">✦ لطفا تاریخ اولین روز از آخرین قاعدگی خود را وارد کنید!</string>
+
+    <string name="vazir">vazir.ttf</string>
+
 </resources>
