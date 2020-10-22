@@ -3,8 +3,11 @@ package com.example.pregnancykotlin
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import com.example.pregnancykotlin.utilities.Dialogs
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import kotlinx.android.synthetic.main.activity_base.*
 
 open class BaseActivity : AppCompatActivity() {
     override fun attachBaseContext(newBase: Context?) {
@@ -21,7 +24,13 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun dismissLoadingDialog() {
-
         Dialogs.dismissLoadingDialog()
     }
+
+    fun initToolbar(toolbar:Toolbar) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+
+    }
+
 }

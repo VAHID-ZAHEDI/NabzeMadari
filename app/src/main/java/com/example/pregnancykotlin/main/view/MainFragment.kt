@@ -21,11 +21,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        var colors = intArrayOf(Color.parseColor("#A4508B"), Color.parseColor("#5F0A87"))
-//        rl_card.gradientColor(colors)
-        ruler_height.setOnValueChangeListener(RulerView.OnValueChangeListener {
 
-        })
     }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_main"
@@ -8,32 +8,17 @@
     android:orientation="vertical"
     tools:context=".main.view.MainFragment">
 
-
-    <com.google.android.material.card.MaterialCardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/rl_card"
+        <fragment
+            android:id="@+id/fr_banner"
+            android:name="com.example.pregnancykotlin.main.view.CategoryFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.google.android.material.card.MaterialCardView>
-    <com.zkk.view.rulerview.RulerView
-        android:id="@+id/ruler_height"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:alphaEnable="false"
-        app:lineColor="@color/black"
-        android:clickable="true"
-        android:background="?selectableItemBackground"
-        app:lineWidth="2dip"
-        app:textColor="@color/black"
-        app:minValue="80.0"
-        app:maxValue="250.0"
-        app:perValue="1"
-        app:selectorValue="165.0"
-        />
-</LinearLayout>
+            android:layout_height="250dp" />
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

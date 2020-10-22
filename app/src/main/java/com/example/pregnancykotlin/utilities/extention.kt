@@ -1,8 +1,13 @@
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.media.MediaMetadataRetriever
+import android.os.Build
 import android.view.View
+import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.models.ErrorTest
@@ -98,5 +103,24 @@ fun TabLayout.changeIconColor(viewPager2: ViewPager2) {
     })
 
 
-}
 
+}
+fun ImageView.retrieveVideoFrameFromVideo(videoPath: String?) {
+    var bitmap:Bitmap
+    var mediaMetadataRetriever: MediaMetadataRetriever? = null
+    try {
+        mediaMetadataRetriever = MediaMetadataRetriever()
+        mediaMetadataRetriever.setDataSource(
+            videoPath,
+            HashMap()
+        )
+        //   mediaMetadataRetriever.setDataSource(videoPath);
+        bitmap = mediaMetadataRetriever.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        throw Throwable("Exception in retrieveVideoFrameFromVideo(String videoPath)" + e.message)
+    } finally {
+        mediaMetadataRetriever?.release()
+    }
+    this.setImageBitmap(bitmap)
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_details"
+    app:startDestination="@id/showContentFragment2">
+
+    <fragment
+        android:id="@+id/showContentFragment2"
+        android:name="com.example.pregnancykotlin.ShowContentFragment"
+        android:label="fragment_show_content"
+        tools:layout="@layout/fragment_show_content" >
+        <action
+            android:id="@+id/action_showContentFragment2_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="com.example.pregnancykotlin.main.view.VideoPlayerFragment"
+        android:label="fragment_video_player"
+        tools:layout="@layout/fragment_video_player" >
+        <action
+            android:id="@+id/action_videoPlayerFragment_to_showContentFragment2"
+            app:destination="@id/showContentFragment2" />
+        <argument
+            android:name="videoUrl"
+            app:argType="string" />
+    </fragment>
+</navigation>

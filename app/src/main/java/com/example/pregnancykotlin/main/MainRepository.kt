@@ -1,6 +1,7 @@
 package com.example.pregnancykotlin.main
 
 import com.example.pregnancykotlin.main.remote.ApiMainDataSource
+import com.example.pregnancykotlin.models.Content
 import com.example.pregnancykotlin.models.SubTopic
 import com.example.pregnancykotlin.models.Topic
 import io.reactivex.Single
@@ -13,6 +14,10 @@ class MainRepository : MainDataSource {
 
     override fun getSubTopicsById(token: String, topicId: String): Single<ArrayList<SubTopic>>? {
         return apiMainDataSource?.getSubTopicsById(token, topicId)
+    }
+
+    override fun getContent(token: String, subTopicId: String): Single<Content>? {
+        return apiMainDataSource.getContent(token, subTopicId)
     }
 
 }

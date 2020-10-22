@@ -63,5 +63,26 @@
         <argument
             android:name="topicId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_subHeaderFragment_to_nav_details"
+            app:destination="@id/nav_details" />
+        <action
+            android:id="@+id/action_subHeaderFragment_to_details_activity"
+            app:destination="@id/details_activity"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
+<!--    <include app:graph="@navigation/nav_details" />-->
+
+    <activity
+        android:id="@+id/details_activity"
+        android:name="com.example.pregnancykotlin.main.view.DetailsActivity"
+        android:label="Product Details"
+        tools:layout="@layout/activity_details">
+
+        <argument
+            android:name="subTopic_id"
+            app:argType="string" />
+
+    </activity>
 </navigation>

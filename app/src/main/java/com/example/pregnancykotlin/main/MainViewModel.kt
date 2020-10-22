@@ -4,9 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pregnancykotlin.login.remote.Resource
-import com.example.pregnancykotlin.models.ErrorTest
-import com.example.pregnancykotlin.models.SubTopic
-import com.example.pregnancykotlin.models.Topic
+import com.example.pregnancykotlin.models.*
 import io.reactivex.Scheduler
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -68,5 +66,28 @@ class MainViewModel @Inject constructor() : ViewModel() {
             })
 
         return result
+    }
+
+    fun getContent(token: String, subTopicId: String): MutableLiveData<Resource<Content>> {
+        var result: MutableLiveData<Resource<Content>> = MutableLiveData()
+        result.value = Resource.loading()
+        mainRepository.getContent(token, subTopicId)?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<Content> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: Content) {
+                    result.value = Resource.success(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    result.value= Resource.error(ErrorTest(400,""))
+                }
+            })
+
+        return result
+
     }
 }

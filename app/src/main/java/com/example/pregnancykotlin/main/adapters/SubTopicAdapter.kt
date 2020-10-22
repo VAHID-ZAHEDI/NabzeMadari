@@ -4,8 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pregnancykotlin.R
+import com.example.pregnancykotlin.main.view.SubTopicFragmentDirections
 import com.example.pregnancykotlin.models.SubTopic
 import com.squareup.picasso.Picasso
 import gradientColor
@@ -36,6 +39,17 @@ class SubTopicAdapter(var subtoics: ArrayList<SubTopic>) :
             str += "● " + subtoics[position].description[i] + "\n"
         }
         holder.itemView.tv_description.text = str
+        holder.itemView.setOnClickListener {
+//            it.findNavController().navigate(R.id.action_subHeaderFragment_to_nav_details)
+            val directions =
+                SubTopicFragmentDirections.actionSubHeaderFragmentToDetailsActivity(subtoics[position]._id)
+            it.findNavController().navigate(directions)
+//            context?.startActivity(Intent(context, DetailsActivity::class.java))
+        }
+
+        fun navigateToProductDetails(productId: String) {
+
+        }
 
     }
 

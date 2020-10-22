@@ -2,6 +2,9 @@ package com.example.pregnancykotlin.login.view
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,44 +18,22 @@ import androidx.navigation.fragment.navArgs
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
-
 import com.example.pregnancykotlin.main.view.MainActivity
 import com.example.pregnancykotlin.utilities.Dialogs
 import com.example.pregnancykotlin.utilities.Ui
 import kotlinx.android.synthetic.main.fragment_validate.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "code"
-private const val ARG_PARAM2 = "phoneNumber"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ValidateFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ValidateFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private val args: ValidateFragmentArgs by navArgs()
-//    private var param1: String? = null
-//    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_validate, container, false)
         Log.d("mmm", "onCreateView: ${args.phoneNumber}")
-//        tv_info.text="ما کد تایید را برای شماره‌ی ارسال کردیم"
 
         return view
 
@@ -60,9 +41,6 @@ class ValidateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        Log.d("mbmvmbm", "onViewCreated: $param1")
-//        Log.d("mbmvmbm", "onViewCreated: $param2")
-//        tv_info.text = args.phoneNumber
         tv_info.text =
             Ui.setBoldSpannable(
                 "ما کد را برای  ${args.phoneNumber} ارسال کردیم\n کد را وارد کنید ",
@@ -111,4 +89,5 @@ class ValidateFragment : Fragment() {
 
         }
     }
+
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pregnancykotlin.R
+import com.example.pregnancykotlin.calculator.Calculator
 import gradientColor
 import ir.hamsaa.persiandatepicker.Listener
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog
@@ -30,7 +31,8 @@ class ChildBirthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        cl_edd.gradientColor(arrayListOf("#38ef7d", "#11998e"))
+        cl_edd.gradientColor(arrayListOf("#11998e", "#38ef7d"))
+        var calculator = Calculator()
         bt_dateSelect.setOnClickListener {
             var typeface = Typeface.createFromAsset(activity?.assets, "Vazir.ttf")
             var picker = PersianDatePickerDialog(activity)
@@ -48,6 +50,8 @@ class ChildBirthFragment : Fragment() {
                 .setListener(object : Listener {
                     override fun onDateSelected(persianCalendar: PersianCalendar?) {
                         tv_date.text = persianCalendar?.persianLongDate
+                        tv_description.text = "تاریخ تقریبی زایمان شما برابر است با ${calculator.calculateChildBirth(persianCalendar!!.persianDay, persianCalendar!!.persianMonth, persianCalendar!!.persianYear)}"
+
                     }
 
                     override fun onDismissed() {

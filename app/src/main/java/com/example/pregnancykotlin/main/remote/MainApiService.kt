@@ -1,5 +1,6 @@
 package com.example.pregnancykotlin.main.remote
 
+import com.example.pregnancykotlin.models.Content
 import com.example.pregnancykotlin.models.SubTopic
 import com.example.pregnancykotlin.models.Topic
 import io.reactivex.Single
@@ -17,4 +18,12 @@ interface MainApiService {
         @Header("Authorization") authorization: String,
         @Field("topicId") topicId: String
     ): Single<ArrayList<SubTopic>>?
+
+    @FormUrlEncoded
+    @Headers("Accept: application/json")
+    @POST("api/getContent")
+    fun getContent(
+        @Header("Authorization") authorization: String,
+        @Field("subTopicId") subTopicId: String
+    ): Single<Content>
 }
