@@ -2,6 +2,7 @@ package com.example.pregnancykotlin.main.remote
 
 import com.example.pregnancykotlin.main.MainDataSource
 import com.example.pregnancykotlin.models.Content
+import com.example.pregnancykotlin.models.MyNews
 import com.example.pregnancykotlin.models.SubTopic
 import com.example.pregnancykotlin.models.Topic
 import io.reactivex.Single
@@ -19,6 +20,10 @@ class ApiMainDataSource : MainDataSource {
 
     override fun getContent(token: String, subTopicId: String): Single<Content>? {
         return mainApiService?.getContent(token, subTopicId)
+    }
+
+    override fun getAllBannerNews(token: String): Single<ArrayList<MyNews>>? {
+        return mainApiService?.getAllBannerNews(token)
     }
 
 }

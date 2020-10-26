@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pregnancykotlin.login.remote.Resource
 import com.example.pregnancykotlin.models.*
-import io.reactivex.Scheduler
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -83,11 +82,38 @@ class MainViewModel @Inject constructor() : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    result.value= Resource.error(ErrorTest(400,""))
+                    result.value = Resource.error(ErrorTest(400, ""))
                 }
             })
 
         return result
 
+    }
+
+    fun getAllBannerNews(token: String): MutableLiveData<Resource<ArrayList<MyNews>>> {
+        var result: MutableLiveData<Resource<ArrayList<MyNews>>> = MutableLiveData()
+        result.value = Resource.loading()
+        mainRepository.apiMainDataSource.getAllBannerNews(token)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<ArrayList<MyNews>> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: ArrayList<MyNews>) {
+                    Log.d("ddd", "onBindViewHolder:http://192.168.1.103:5902/files/${t[0]._id}")
+
+                    result.value = Resource.success(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    Log.d("ddd", "${e.message}")
+
+                    result.value = Resource.error(ErrorTest(430, ""))
+                }
+            }
+            )
+        return result
     }
 }

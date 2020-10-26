@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class User
     (
+
     var firstName: String,
     var lastName: String,
     var age: Int,
@@ -11,7 +12,7 @@ data class User
 
 
 ) {
-    var id: Long =0
+    var _id: String? =null
     var imagePath: String?=null
     @SerializedName("register")
     var isRegister: Boolean = false

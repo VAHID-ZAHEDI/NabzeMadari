@@ -10,6 +10,7 @@ import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.ShowContentFragmentDirections
 import com.example.pregnancykotlin.models.Media
 import com.example.pregnancykotlin.models.MediaType
+import com.example.pregnancykotlin.models.MyNews
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_banner.view.*
 import kotlinx.android.synthetic.main.item_header.view.*
@@ -31,7 +32,6 @@ class BannerAdapter(bannerData: ArrayList<Media>) :
     }
 
     override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
-//        holder.itemView.cv_image.setCardBackgroundColor(bannerData[position].color)
 
         when (bannerData[position].mediaType) {
             MediaType.IMAGE -> {

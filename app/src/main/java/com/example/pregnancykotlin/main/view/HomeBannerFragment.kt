@@ -1,34 +1,28 @@
 package com.example.pregnancykotlin.main.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
+import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
+import com.example.pregnancykotlin.enum.Status
+import com.example.pregnancykotlin.main.adapters.HomeBannerAdapter
+import com.example.pregnancykotlin.models.MyNews
+import kotlinx.android.synthetic.main.fragment_home_banner.*
+import kotlinx.android.synthetic.main.fragment_show_content.*
+import kotlin.concurrent.fixedRateTimer
+import kotlin.math.abs
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeBannerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeBannerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +32,49 @@ class HomeBannerFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home_banner, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeBannerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeBannerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
+        mainViewModel.getAllBannerNews("Bearer ${GlobalVariebles.token}")
+            .observe(viewLifecycleOwner, {
+                Log.d("ddd", "onViewCreated: ${it.status}")
+                when (it.status) {
+                    Status.SUCCESS -> setupViewPager(it.data!!)
+
                 }
-            }
+            })
     }
+
+    private fun setupViewPager(myNewsList: ArrayList<MyNews>) {
+
+        var position = 0
+        vp_home.adapter =
+            HomeBannerAdapter(
+                myNewsList!!
+            )
+        vp_home.clipToPadding = false
+        vp_home.clipChildren = false
+        vp_home.offscreenPageLimit = 3
+        vp_home.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        var compositePageTransformer = CompositePageTransformer()
+        compositePageTransformer.addTransformer(MarginPageTransformer(40))
+        compositePageTransformer.addTransformer { page, position ->
+            var r = 1 - abs(position)
+            page.scaleY = 0.85f + r * 0.15f
+        }
+        vp_home.setPageTransformer(compositePageTransformer)
+//        fixedRateTimer("timer", false, 0, 10000) {
+//            if (vp_home.currentItem != myNewsList.size - 1) {
+//                position++
+//            } else {
+//                position = 0
+//            }
+//            vp_home.currentItem = position
+//
+//        }
+        home_indicator.setViewPager2(vp_home)
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.example.pregnancykotlin.main.remote
 
 import com.example.pregnancykotlin.models.Content
+import com.example.pregnancykotlin.models.MyNews
 import com.example.pregnancykotlin.models.SubTopic
 import com.example.pregnancykotlin.models.Topic
 import io.reactivex.Single
@@ -26,4 +27,9 @@ interface MainApiService {
         @Header("Authorization") authorization: String,
         @Field("subTopicId") subTopicId: String
     ): Single<Content>
+
+    @Headers("Accept: application/json")
+    @GET("/api/getAllBannerNews")
+    fun getAllBannerNews(@Header("Authorization") authorization: String): Single<ArrayList<MyNews>>
+
 }

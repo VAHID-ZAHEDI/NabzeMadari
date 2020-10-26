@@ -15,9 +15,9 @@
 
         <fragment
             android:id="@+id/fr_banner"
-            android:name="com.example.pregnancykotlin.main.view.CategoryFragment"
+            android:name="com.example.pregnancykotlin.main.view.HomeBannerFragment"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
