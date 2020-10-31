@@ -32,4 +32,9 @@ interface MainApiService {
     @GET("/api/getAllBannerNews")
     fun getAllBannerNews(@Header("Authorization") authorization: String): Single<ArrayList<MyNews>>
 
+    @Headers("Accept: application/json")
+    @GET("/api/getAllContent")
+    fun getAllContent(@Header("Authorization") authorization: String): Single<ArrayList<Content>>
+
+
 }

@@ -40,4 +40,16 @@ class Calculator {
 
         return persianCalendar.persianLongDate
     }
+
+    fun getWeeksDifference(fromDate: PersianCalendar, toDate: PersianCalendar): String {
+
+        fromDate?.setPersianDate(fromDate.persianYear, fromDate.persianMonth, fromDate.persianDay)
+        toDate?.setPersianDate(toDate.persianYear, toDate.persianMonth, toDate.persianDay)
+        var differenceMiliSecond = toDate.timeInMillis - fromDate.timeInMillis
+        var weekPast = (differenceMiliSecond) / (1000 * 60 * 60 * 24 * 7)
+        var dayPast = differenceMiliSecond % (1000 * 60 * 60 * 24 * 7)/(1000*60*60*24)
+        var result=" سن بارداری شما برابر است با $weekPast هفته و $dayPast روز "
+        Log.d("vvv", "getDaysDifference: $result")
+        return if (fromDate == null || toDate == null) "0" else (result)
+    }
 }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pregnancykotlin.login.remote.Resource
 import com.example.pregnancykotlin.models.*
+import handleErrorBody
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -115,5 +116,30 @@ class MainViewModel @Inject constructor() : ViewModel() {
             }
             )
         return result
+    }
+
+    fun getAllContent(token: String): MutableLiveData<Resource<ArrayList<Content>>> {
+        var result: MutableLiveData<Resource<ArrayList<Content>>> = MutableLiveData()
+        result.value = Resource.loading()
+        mainRepository.getAllContent(token)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<ArrayList<Content>> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: ArrayList<Content>) {
+                    result.value = Resource.success(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    result.value = Resource.error(e.handleErrorBody())
+                }
+            })
+
+
+        return result
+
     }
 }

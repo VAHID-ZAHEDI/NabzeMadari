@@ -36,9 +36,10 @@ class CategoryFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        changeToolbarTitle("دسته بندی")
         if (mainViewModel == null) {
             mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
-            mainViewModel!!.getAllTopics("Bearer ${GlobalVariebles.token}")
+            mainViewModel!!.getAllTopics(getToken())
                 .observe(viewLifecycleOwner,
                     Observer {
                         when (it.status) {

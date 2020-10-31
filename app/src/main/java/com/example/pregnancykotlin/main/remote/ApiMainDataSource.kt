@@ -26,4 +26,8 @@ class ApiMainDataSource : MainDataSource {
         return mainApiService?.getAllBannerNews(token)
     }
 
+    override fun getAllContent(token: String): Single<ArrayList<Content>>? {
+        return mainApiService?.getAllContent(token)
+    }
+
 }

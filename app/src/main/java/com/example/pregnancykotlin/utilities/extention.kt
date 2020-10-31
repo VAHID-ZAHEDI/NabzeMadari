@@ -115,12 +115,13 @@ fun ImageView.retrieveVideoFrameFromVideo(videoPath: String?) {
             HashMap()
         )
         //   mediaMetadataRetriever.setDataSource(videoPath);
-        bitmap = mediaMetadataRetriever.getFrameAtTime(1, MediaMetadataRetriever.OPTION_CLOSEST)
+        bitmap = mediaMetadataRetriever.getFrameAtTime(10, MediaMetadataRetriever.OPTION_CLOSEST)
     } catch (e: Exception) {
         e.printStackTrace()
         throw Throwable("Exception in retrieveVideoFrameFromVideo(String videoPath)" + e.message)
     } finally {
         mediaMetadataRetriever?.release()
     }
+
     this.setImageBitmap(bitmap)
 }

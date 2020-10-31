@@ -25,5 +25,9 @@ class MainRepository : MainDataSource {
         return apiMainDataSource.getAllBannerNews(token)
     }
 
+    override fun getAllContent(token: String): Single<ArrayList<Content>>? {
+        return apiMainDataSource.getAllContent(token)
+    }
+
 
 }

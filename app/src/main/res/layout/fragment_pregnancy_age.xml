@@ -38,7 +38,7 @@
                     android:textSize="15sp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bt_dateSelect"
+                    android:id="@+id/bt_dateSelect_age"
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="130dp"
                     android:layout_height="48dp"
@@ -55,7 +55,7 @@
                     app:strokeColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/tv_date"
+                    android:id="@+id/tv_date_age"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/tv_description"
+                    android:id="@+id/tv_description_age"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

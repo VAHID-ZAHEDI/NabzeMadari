@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import com.example.pregnancykotlin.BaseFragment
 import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
@@ -17,11 +17,9 @@ import com.example.pregnancykotlin.enum.Status
 import com.example.pregnancykotlin.main.adapters.HomeBannerAdapter
 import com.example.pregnancykotlin.models.MyNews
 import kotlinx.android.synthetic.main.fragment_home_banner.*
-import kotlinx.android.synthetic.main.fragment_show_content.*
-import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
 
-class HomeBannerFragment : Fragment() {
+class HomeBannerFragment : BaseFragment() {
 
 
     override fun onCreateView(
@@ -36,7 +34,7 @@ class HomeBannerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
-        mainViewModel.getAllBannerNews("Bearer ${GlobalVariebles.token}")
+        mainViewModel.getAllBannerNews(getToken())
             .observe(viewLifecycleOwner, {
                 Log.d("ddd", "onViewCreated: ${it.status}")
                 when (it.status) {

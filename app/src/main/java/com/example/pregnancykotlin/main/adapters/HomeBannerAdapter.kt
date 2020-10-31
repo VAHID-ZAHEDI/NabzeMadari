@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.models.MyNews
 import com.squareup.picasso.Picasso
+import gradientColor
 import kotlinx.android.synthetic.main.item_home_banner.view.*
 import kotlinx.android.synthetic.main.item_home_banner.view.iv_slider
 
@@ -26,6 +27,7 @@ class HomeBannerAdapter(var myNewsList: ArrayList<MyNews>) :
             .get()
             .load("http://192.168.1.103:5902/files/${myNewsList[position].imagePath}")
             .into(holder.itemView.iv_slider)
+        holder.itemView.ll_title.gradientColor(arrayListOf("#5F0A87","#A4508B"))
     }
 
     override fun getItemCount(): Int {

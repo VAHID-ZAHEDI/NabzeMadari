@@ -4,17 +4,16 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pregnancykotlin.login.remote.Resource
-import com.example.pregnancykotlin.models.*
-import com.example.pregnancykotlin.network.RetrofitException
-import com.google.gson.Gson
-import com.google.gson.TypeAdapter
+import com.example.pregnancykotlin.models.ErrorTest
+import com.example.pregnancykotlin.models.SmsCode
+import com.example.pregnancykotlin.models.TokenInfo
+import com.example.pregnancykotlin.models.User
 import handleErrorBody
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.HttpException
 import javax.inject.Inject
 
 
@@ -80,6 +79,7 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         result.value = Resource.loading()
         loginRepository.apiLoginDataSource.login(phoneNumber)
             .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
             .subscribe(object : SingleObserver<TokenInfo> {
                 override fun onSubscribe(d: Disposable) {
                     compositeDisposable.add(d)

@@ -1,10 +1,6 @@
 package com.example.pregnancykotlin.login.view
 
 import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.media.MediaMetadataRetriever
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,11 +10,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
+import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
 import com.example.pregnancykotlin.enum.Status
-import com.example.pregnancykotlin.main.view.MainActivity
 import com.example.pregnancykotlin.utilities.Dialogs
 import com.example.pregnancykotlin.utilities.Ui
 import kotlinx.android.synthetic.main.fragment_validate.*
@@ -33,7 +31,6 @@ class ValidateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_validate, container, false)
-        Log.d("mmm", "onCreateView: ${args.phoneNumber}")
 
         return view
 
@@ -47,25 +44,35 @@ class ValidateFragment : Fragment() {
                 15,
                 26
             )
-
+        val loginViewModel =
+            DaggerInstanceComponent.builder().build().getLoginViewModel()
         pv_otp.setOtpCompletionListener {
-            val loginViewModel =
-                DaggerInstanceComponent.builder().build()
-            loginViewModel.getLoginViewModel()
+
+            loginViewModel
                 .validateCode(args.phoneNumber, it.toString())
                 .observe(viewLifecycleOwner, Observer {
                     when (it.status) {
                         Status.LOADING -> Dialogs.showLoadingDialog(activity as Context)
                         Status.SUCCESS -> {
                             Dialogs.dismissLoadingDialog()
-                            Log.d("zzx", "onViewCreated: ${it.data!!.isRegister}")
                             if (it.data!!.isRegister) {
-
-                                loginViewModel.getLoginViewModel().login(args.phoneNumber)
-                                    .observe(viewLifecycleOwner, Observer {
+                                loginViewModel.login(args.phoneNumber)
+                                    .observe(viewLifecycleOwner, {
                                         Log.d("accessT", "onViewCreated: ${it.data?.accessToken}")
-                                        startActivity(Intent(activity, MainActivity::class.java))
-                                        activity?.finish()
+                                        if (it.data?.accessToken != null) {
+                                            val direction =
+                                                ValidateFragmentDirections.actionValidateFragmentToMainActivity()
+                                            findNavController().navigate(direction)
+                                            var msp = DaggerPregnancyComponent.builder()
+                                                .setContext(activity as Context)
+                                                .build().getSafePref()
+                                            msp.setSharedPreferences(
+                                                GlobalVariebles.TOKEN,
+                                                "Bearer ${it.data.accessToken}"
+                                            )
+                                            msp.setSharedPreferences(GlobalVariebles.HAS_SIGN_IN, true)
+                                            activity?.finish()
+                                        }
                                     })
                             } else {
                                 val action =

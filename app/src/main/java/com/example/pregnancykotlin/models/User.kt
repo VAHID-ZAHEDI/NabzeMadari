@@ -9,6 +9,8 @@ data class User
     var lastName: String,
     var age: Int,
     var phoneNumber: String,
+    var weight :Int,
+    var height:Int
 
 
 ) {

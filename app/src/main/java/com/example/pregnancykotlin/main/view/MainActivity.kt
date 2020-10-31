@@ -1,9 +1,8 @@
 package com.example.pregnancykotlin.main.view
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.pregnancykotlin.BaseActivity
 import com.example.pregnancykotlin.R
@@ -14,7 +13,9 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        initToolbar(toolbar, false)
+        findNavController(R.id.nav_host_fragment)
+            .setGraph(R.navigation.nav_main, intent.extras)
         if (savedInstanceState == null)
             setupBottomNavigationBar()
 
@@ -30,6 +31,7 @@ class MainActivity : BaseActivity() {
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(bottom_nav, navController)
     }
+
 
 //    override fun onSupportNavigateUp(): Boolean {
 //        return currentNavController?.value?.navigateUp() ?: false

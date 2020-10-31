@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_mainFragment_to_calculatorFragment"
             app:destination="@id/calculatorFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_details_activity"
+            app:destination="@id/details_activity" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"

@@ -25,6 +25,7 @@ class CalculatorFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        changeToolbarTitle("محاسبه گر")
         var fragments = arrayOf(
             BmiFragment() as Fragment,
             PregnancyAgeFragment() as Fragment,

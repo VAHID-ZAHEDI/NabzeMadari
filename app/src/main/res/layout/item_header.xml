@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_margin="10dp"
@@ -71,21 +70,41 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="1dp"
                 android:drawableRight="@drawable/video"
                 android:drawablePadding="7dp"
-                android:text="5 ویدیو "
-                android:textColor="#E1E1E1"
+                android:text="5 "
+                android:textColor="@color/textAndIconWhiteTransparent"
                 android:textSize="10sp" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="1dp"
                 android:drawableRight="@drawable/pdf"
                 android:drawablePadding="7dp"
-                android:text="10 پی دی اف "
+                android:text="10 "
+                android:textColor="@color/textAndIconWhiteTransparent"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:drawableRight="@drawable/seen"
+                android:drawablePadding="7dp"
+                android:text="10 "
+                android:textColor="@color/textAndIconWhiteTransparent"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:drawableRight="@drawable/like"
+                android:drawablePadding="7dp"
+                android:text="10 "
                 android:textColor="#E1E1E1"
                 android:textSize="10sp" />
         </LinearLayout>

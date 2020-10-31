@@ -1,5 +1,6 @@
 package com.example.pregnancykotlin
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,47 +12,64 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
+import com.example.pregnancykotlin.main.MainViewModel
 import com.example.pregnancykotlin.main.adapters.BannerAdapter
 import com.example.pregnancykotlin.main.view.DetailsActivityArgs
+import com.example.pregnancykotlin.models.Content
 import com.example.pregnancykotlin.models.Media
 import kotlinx.android.synthetic.main.fragment_show_content.*
 import kotlin.math.abs
 
 class ShowContentFragment : BaseFragment() {
     private val args: DetailsActivityArgs by navArgs()
+    private var mainViewModel: MainViewModel? = null
+    private lateinit var content: Content
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_show_content, container, false)
+        var view: View? = null
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_show_content, container, false)
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as BaseActivity).initToolbar(toolbar)
-        var mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
-        mainViewModel.getContent("Bearer ${GlobalVariebles.token}", args.subTopicId)
-            .observe(viewLifecycleOwner, {
-                when (it.status) {
-                    Status.LOADING -> (activity as BaseActivity).showLoadingDialog()
-                    Status.SUCCESS -> {
-                        (activity as BaseActivity).dismissLoadingDialog()
-                        toolbar.title = it.data?.title
-                        collapsing_toolbar_layout.title=it.data?.title
-                        setupViewPager(it.data?.mediaList)
-                        tv_text.text = it.data?.text
+        (activity as BaseActivity).initToolbar(toolbar,true)
+        if (mainViewModel == null) {
+            mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
+            mainViewModel!!.getContent(getToken(), args.subTopicId)
+                .observe(viewLifecycleOwner, {
+                    when (it.status) {
+                        Status.LOADING -> (activity as BaseActivity).showLoadingDialog()
+                        Status.SUCCESS -> {
+                            (activity as BaseActivity).dismissLoadingDialog()
+                            toolbar.title = it.data?.title
+                            collapsing_toolbar_layout.title = it.data?.title
+                            setupViewPager(it.data?.mediaList)
+                            tv_text.text = it.data?.text
+                            content = it.data!!
+                        }
+
                     }
 
-                }
-
-            })
+                })
+        } else {
+            toolbar.title = content?.title
+            collapsing_toolbar_layout.title = content?.title
+            setupViewPager(content?.mediaList)
+            tv_text.text = content?.text
+        }
 
     }
 
     private fun setupViewPager(bannerData: ArrayList<Media>?) {
-        Log.d("qqq", "setupViewPager: ${bannerData?.size}")
         vp_banner.adapter =
             BannerAdapter(
                 bannerData!!

@@ -5,12 +5,9 @@ import android.content.Context
 import android.os.StrictMode
 import android.view.LayoutInflater
 import com.example.pregnancykotlin.R
-import com.readystatesoftware.chuck.Chuck
-import com.readystatesoftware.chuck.ChuckInterceptor
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
-import okhttp3.OkHttpClient
 
 
 class AppConfig : Application() {

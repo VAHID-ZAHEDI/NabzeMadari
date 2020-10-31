@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pregnancykotlin.R
@@ -34,9 +33,11 @@ class SubTopicAdapter(var subtoics: ArrayList<SubTopic>) :
             .load("http://192.168.1.103:5902/files/${subtoics[position].imagePath}")
             .into(holder.itemView.iv_topic)
         var str: String? = ""
-        for (i in subtoics[position].description.size - 1 downTo 0 step 1) {
+        if (subtoics[position].description != null) {
+            for (i in subtoics[position].description.size - 1 downTo 0 step 1) {
 
-            str += "● " + subtoics[position].description[i] + "\n"
+                str += "● " + subtoics[position].description[i] + "\n"
+            }
         }
         holder.itemView.tv_description.text = str
         holder.itemView.setOnClickListener {

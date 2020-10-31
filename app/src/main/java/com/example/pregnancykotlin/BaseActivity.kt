@@ -27,9 +27,9 @@ open class BaseActivity : AppCompatActivity() {
         Dialogs.dismissLoadingDialog()
     }
 
-    fun initToolbar(toolbar:Toolbar) {
+    fun initToolbar(toolbar:Toolbar,showBackButton:Boolean) {
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(showBackButton);
 
     }
 

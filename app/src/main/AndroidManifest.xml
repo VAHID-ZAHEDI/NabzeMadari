@@ -15,20 +15,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.view.DetailsActivity"
-            android:theme="@style/mainTheme"></activity>
-        <activity android:name=".BaseActivity" />
-        <activity android:name=".splash.SplashActivity" />
-        <activity android:name=".login.view.LoginActivity"></activity>
-        <activity
-            android:name=".main.view.MainActivity"
-            android:theme="@style/mainTheme">
+            android:name=".main.view.VideoPlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout|screenSize"
+            android:screenOrientation="landscape"></activity>
+        <activity android:name=".main.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".main.view.DetailsActivity"
+            android:theme="@style/mainTheme" />
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".login.view.LoginActivity" />
+        <activity
+            android:name=".main.view.MainActivity"
+            android:theme="@style/mainTheme" />
     </application>
 
 </manifest>

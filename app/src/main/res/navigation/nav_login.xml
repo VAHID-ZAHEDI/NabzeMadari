@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_validateFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_validateFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
     <fragment
         android:id="@+id/signUpUserFragment"
@@ -48,10 +51,18 @@
         <action
             android:id="@+id/action_signUpUserFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_signUpUserFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.pregnancykotlin.main.view.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.pregnancykotlin.main.view.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>
