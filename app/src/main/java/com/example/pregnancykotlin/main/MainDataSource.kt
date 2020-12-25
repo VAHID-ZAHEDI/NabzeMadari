@@ -12,4 +12,5 @@ interface MainDataSource {
     fun getContent(token: String, subTopicId: String): Single<Content>?
     fun getAllBannerNews(token: String): Single<ArrayList<MyNews>>?
     fun getAllContent(token: String): Single<ArrayList<Content>>?
+    fun likeContent(token: String, contentId: String):Single<Void>?
 }

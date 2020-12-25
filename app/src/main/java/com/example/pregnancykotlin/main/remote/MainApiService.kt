@@ -36,5 +36,12 @@ interface MainApiService {
     @GET("/api/getAllContent")
     fun getAllContent(@Header("Authorization") authorization: String): Single<ArrayList<Content>>
 
+    @FormUrlEncoded
+    @Headers("Accept: application/json")
+    @POST("/api/like")
+    fun likeContent(
+        @Header("Authorization") authorization: String,
+        @Field("contentId") contentId: String):Single<Void>
+
 
 }

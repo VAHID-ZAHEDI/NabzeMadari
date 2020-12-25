@@ -30,4 +30,8 @@ class ApiMainDataSource : MainDataSource {
         return mainApiService?.getAllContent(token)
     }
 
+    override fun likeContent(token: String, contentId: String): Single<Void>? {
+        return mainApiService?.likeContent(token, contentId)
+    }
+
 }

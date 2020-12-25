@@ -142,4 +142,28 @@ class MainViewModel @Inject constructor() : ViewModel() {
         return result
 
     }
+
+    fun likeContent(token: String, contentId: String): MutableLiveData<Resource<Int>> {
+        var result: MutableLiveData<Resource<Int>> = MutableLiveData()
+        result.value = Resource.loading()
+        mainRepository.likeContent(token, contentId)?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<Void> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: Void) {
+                    result.value = Resource.success(200)
+                }
+
+                override fun onError(e: Throwable) {
+                    result.value = Resource.error(e.handleErrorBody())
+                }
+            })
+
+
+        return result
+
+    }
 }

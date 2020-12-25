@@ -111,7 +111,7 @@ class LoginViewModel @Inject constructor() : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    result.value = Resource.error(ErrorTest(400, ""))
+                    result.value = Resource.error(e.handleErrorBody())
                 }
             })
 

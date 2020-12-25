@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -17,13 +18,19 @@ import com.example.pregnancykotlin.main.adapters.BannerAdapter
 import com.example.pregnancykotlin.main.view.DetailsActivityArgs
 import com.example.pregnancykotlin.models.Content
 import com.example.pregnancykotlin.models.Media
+import com.example.pregnancykotlin.ui.ProgressOutlineProvider
+import com.like.LikeButton
+import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.fragment_show_content.*
 import kotlin.math.abs
+
 
 class ShowContentFragment : BaseFragment() {
     private val args: DetailsActivityArgs by navArgs()
     private var mainViewModel: MainViewModel? = null
     private lateinit var content: Content
+    private var pop: ProgressOutlineProvider? = null
+    private var contentId :String?=null
 
 
     override fun onCreateView(
@@ -41,7 +48,7 @@ class ShowContentFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as BaseActivity).initToolbar(toolbar,true)
+        (activity as BaseActivity).initToolbar(toolbar, true)
         if (mainViewModel == null) {
             mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
             mainViewModel!!.getContent(getToken(), args.subTopicId)
@@ -55,6 +62,8 @@ class ShowContentFragment : BaseFragment() {
                             setupViewPager(it.data?.mediaList)
                             tv_text.text = it.data?.text
                             content = it.data!!
+                            contentId = it.data._id
+                            bt_like.isLiked=content.userLike
                         }
 
                     }
@@ -67,6 +76,27 @@ class ShowContentFragment : BaseFragment() {
             tv_text.text = content?.text
         }
 
+//        initScaleLayout()
+//        ll_items.gradientColor(arrayListOf("#5F0A87","#A4508B"))
+        manageLike()
+
+    }
+
+    private fun manageLike() {
+        bt_like.setOnLikeListener(object : OnLikeListener {
+            override fun liked(likeButton: LikeButton) {
+                mainViewModel?.likeContent(getToken(),contentId!!)?.observe(viewLifecycleOwner,
+                    Observer {
+
+                    })
+            }
+            override fun unLiked(likeButton: LikeButton) {
+                mainViewModel?.likeContent(getToken(),contentId!!)?.observe(viewLifecycleOwner,
+                    Observer {
+
+                    })
+            }
+        })
     }
 
     private fun setupViewPager(bannerData: ArrayList<Media>?) {
@@ -88,5 +118,26 @@ class ShowContentFragment : BaseFragment() {
 
         worm_dots_indicator.setViewPager2(vp_banner)
     }
+
+//    private fun initScaleLayout(){
+//        sl.setListener(object : ScalingLayoutListener {
+//            override fun onCollapsed() {}
+//            override fun onExpanded() {}
+//            override fun onProgress(progress: Float) {
+//                if (pop != null) {
+//                    pop!!.updateProgress(sl.settings.maxRadius, progress)
+//                }
+//            }
+//        })
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+//            pop = ProgressOutlineProvider()
+//            sl.outlineProvider = pop
+//            sl.clipToOutline = true
+//            sl.post(Runnable {
+//                pop!!.updateProgress(sl.settings.maxRadius, 1F)
+//                sl.invalidateOutline()
+//            })
+//        }
+//    }
 
 }

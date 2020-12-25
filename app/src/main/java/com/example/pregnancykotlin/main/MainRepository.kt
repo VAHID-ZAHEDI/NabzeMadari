@@ -29,5 +29,9 @@ class MainRepository : MainDataSource {
         return apiMainDataSource.getAllContent(token)
     }
 
+    override fun likeContent(token: String, contentId: String): Single<Void>? {
+        return apiMainDataSource.likeContent(token, contentId)
+    }
+
 
 }

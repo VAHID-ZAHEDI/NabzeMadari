@@ -136,14 +136,11 @@ dependencies {
     implementation 'com.github.HamidrezaAmz:MagicalExoPlayer:1.0.16'
     implementation 'com.github.halilozercan:BetterVideoPlayer:kotlin-SNAPSHOT'
 
-
-
-
-
-
-
-
-
+    implementation 'com.github.iammert:ScalingLayout:1.2.1'
+    //likeButton
+    implementation 'com.sackcentury:shinebutton:1.0.0'
+    implementation 'com.jackandphantom.android:androidlikebutton:1.2.0'
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
 
 

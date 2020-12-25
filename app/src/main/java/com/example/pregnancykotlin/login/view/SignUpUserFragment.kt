@@ -55,10 +55,13 @@ class SignUpUserFragment : BaseFragment() {
         np_height_reg.setOnValueChangedListener { picker, oldVal, newVal ->
             tv_height_reg.text = values[newVal]
             height = (values[newVal].replace(" سانتی متر ", "")).toInt()
+
+
         }
         rule_weight_reg.setOnValueChangedListener {
             tv_weight_reg.text = "$it کیلوگرم "
             weight = it.toInt()
+
         }
         var currentYear = PersianCalendar().persianYear
         et_birthday.setOnClickListener {
@@ -91,6 +94,8 @@ class SignUpUserFragment : BaseFragment() {
         }
 
         bt_register.setOnClickListener {
+            Log.d("nnn", "height: $height")
+            Log.d("nnn", "weight: $weight")
             val loginViewModel = DaggerInstanceComponent.builder().build().getLoginViewModel()
             loginViewModel.signUp(
                 User(
@@ -101,7 +106,7 @@ class SignUpUserFragment : BaseFragment() {
                     weight, height
                 )
             )
-                .observe(viewLifecycleOwner, Observer {
+                .observe(viewLifecycleOwner, {
                     Log.d("bbb", "onViewCreated: ${it.status}")
                     when (it.status) {
                         Status.LOADING -> (activity as BaseActivity).showLoadingDialog()
