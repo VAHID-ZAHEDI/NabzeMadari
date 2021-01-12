@@ -1,9 +1,6 @@
 package com.example.pregnancykotlin.main
 
-import com.example.pregnancykotlin.models.Content
-import com.example.pregnancykotlin.models.MyNews
-import com.example.pregnancykotlin.models.SubTopic
-import com.example.pregnancykotlin.models.Topic
+import com.example.pregnancykotlin.models.*
 import io.reactivex.Single
 
 interface MainDataSource {
@@ -12,5 +9,7 @@ interface MainDataSource {
     fun getContent(token: String, subTopicId: String): Single<Content>?
     fun getAllBannerNews(token: String): Single<ArrayList<MyNews>>?
     fun getAllContent(token: String): Single<ArrayList<Content>>?
-    fun likeContent(token: String, contentId: String):Single<Void>?
+    fun likeContent(token: String, contentId: String): Single<Void>?
+    fun getContentComments(token: String, contentId: String, page: Int, size: Int):Single<CommentsPaging>?
+    fun addNewComment(token: String,addComment: AddComment):Single<Void>?
 }

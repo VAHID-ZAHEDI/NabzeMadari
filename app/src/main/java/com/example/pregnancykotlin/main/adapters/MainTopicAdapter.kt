@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
-import com.example.pregnancykotlin.main.view.CategoryFragment
 import com.example.pregnancykotlin.main.view.CategoryFragmentDirections
 import com.example.pregnancykotlin.models.Topic
 import com.squareup.picasso.Picasso
@@ -38,7 +38,7 @@ class MainTopicAdapter(var headers: List<Topic>) :
         holder.itemView.cl_header.gradientColor(colors)
         Picasso
             .get()
-            .load("http://192.168.1.103:5902/files/${headers[position].imagePath}")
+            .load("${GlobalVariebles.FILE_URL}${headers[position].imagePath}")
             .into(holder.itemView.iv_topic)
         var str: String? = ""
         for (i in headers[position].description.size - 1 downTo 0 step 1) {
@@ -46,6 +46,7 @@ class MainTopicAdapter(var headers: List<Topic>) :
             str += "● " + headers[position].description[i] + "\n"
         }
         holder.itemView.tv_description.text = str
+        holder.itemView.tv_likeCount.text = headers[position].likeCount.toString()
         holder.itemView.setOnClickListener {
             val action =
                 CategoryFragmentDirections.actionCategoryFragmentToSubHeaderFragment(headers[position]._id)

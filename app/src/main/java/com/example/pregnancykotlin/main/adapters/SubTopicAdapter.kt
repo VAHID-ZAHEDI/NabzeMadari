@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.main.view.SubTopicFragmentDirections
 import com.example.pregnancykotlin.models.SubTopic
@@ -30,7 +31,7 @@ class SubTopicAdapter(var subtoics: ArrayList<SubTopic>) :
         holder.itemView.cl_header.gradientColor(subtoics[position].gradientColor)
         Picasso
             .get()
-            .load("http://192.168.1.103:5902/files/${subtoics[position].imagePath}")
+            .load("${GlobalVariebles.FILE_URL}${subtoics[position].imagePath}")
             .into(holder.itemView.iv_topic)
         var str: String? = ""
         if (subtoics[position].description != null) {
@@ -40,6 +41,7 @@ class SubTopicAdapter(var subtoics: ArrayList<SubTopic>) :
             }
         }
         holder.itemView.tv_description.text = str
+        holder.itemView.tv_likeCount.text = subtoics[position].likeCount.toString()
         holder.itemView.setOnClickListener {
 //            it.findNavController().navigate(R.id.action_subHeaderFragment_to_nav_details)
             val directions =
@@ -48,9 +50,6 @@ class SubTopicAdapter(var subtoics: ArrayList<SubTopic>) :
 //            context?.startActivity(Intent(context, DetailsActivity::class.java))
         }
 
-        fun navigateToProductDetails(productId: String) {
-
-        }
 
     }
 

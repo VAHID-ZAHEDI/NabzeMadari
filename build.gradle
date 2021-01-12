@@ -5,12 +5,14 @@ buildscript {
         jcenter()
         maven { url "https://jitpack.io" }
         maven {url 'https://maven.google.com'}
+        maven {url "http://dl.bintray.com/glomadrian/maven"}
+
         google()
 
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:4.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'androidx.multidex:multidex:2.0.1'
         classpath 'com.google.gms:google-services:4.3.4'

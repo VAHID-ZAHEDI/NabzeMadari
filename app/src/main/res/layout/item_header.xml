@@ -82,16 +82,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:drawableRight="@drawable/pdf"
-                android:drawablePadding="7dp"
-                android:text="10 "
-                android:textColor="@color/textAndIconWhiteTransparent"
-                android:textSize="10sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:drawableRight="@drawable/seen"
                 android:drawablePadding="7dp"
                 android:text="10 "
@@ -99,6 +89,7 @@
                 android:textSize="10sp" />
 
             <TextView
+                android:id="@+id/tv_likeCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"

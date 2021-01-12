@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
-import com.example.pregnancykotlin.ShowContentFragmentDirections
+import com.example.pregnancykotlin.main.view.ShowContentFragmentDirections
 import com.example.pregnancykotlin.models.Media
 import com.example.pregnancykotlin.models.MediaType
 import com.squareup.picasso.Picasso

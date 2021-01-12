@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.pregnancykotlin.BaseActivity
@@ -52,6 +51,7 @@ class SignUpUserFragment : BaseFragment() {
         np_height_reg.displayedValues = values.toTypedArray()
         np_height_reg.maxValue = values.size - 1
         np_height_reg.minValue = 0
+        np_height_reg.value = 150
         np_height_reg.setOnValueChangedListener { picker, oldVal, newVal ->
             tv_height_reg.text = values[newVal]
             height = (values[newVal].replace(" سانتی متر ", "")).toInt()

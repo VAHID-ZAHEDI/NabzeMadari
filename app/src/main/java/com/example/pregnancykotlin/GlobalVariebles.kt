@@ -4,7 +4,8 @@ class GlobalVariebles {
     companion object {
 
         const val TOKEN = "accessToken"
-        const val HAS_SIGN_IN="hasSignIn"
-        const val FILE_URL="http://192.168.1.103:5902/files/"
+        const val HAS_SIGN_IN = "hasSignIn"
+        const val INTRO_SHOW = "introShow"
+        const val FILE_URL = "${BuildConfig.H + BuildConfig.P}/files/"
     }
 }

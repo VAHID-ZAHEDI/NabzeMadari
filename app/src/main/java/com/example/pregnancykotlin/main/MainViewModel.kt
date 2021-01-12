@@ -1,9 +1,13 @@
 package com.example.pregnancykotlin.main
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.example.pregnancykotlin.login.remote.Resource
+import com.example.pregnancykotlin.main.adapters.CommentPagingDataSourceFactory
 import com.example.pregnancykotlin.models.*
 import handleErrorBody
 import io.reactivex.SingleObserver
@@ -11,11 +15,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
+import java.util.concurrent.Executors
 import javax.inject.Inject
+
 
 class MainViewModel @Inject constructor() : ViewModel() {
     private val mainRepository = MainRepository()
     private val compositeDisposable = CompositeDisposable()
+
     fun getAllTopics(token: String): MutableLiveData<Resource<List<Topic>>> {
         var result: MutableLiveData<Resource<List<Topic>>> = MutableLiveData()
         result.value = Resource.loading()
@@ -146,7 +154,8 @@ class MainViewModel @Inject constructor() : ViewModel() {
     fun likeContent(token: String, contentId: String): MutableLiveData<Resource<Int>> {
         var result: MutableLiveData<Resource<Int>> = MutableLiveData()
         result.value = Resource.loading()
-        mainRepository.likeContent(token, contentId)?.observeOn(AndroidSchedulers.mainThread())
+        mainRepository.likeContent(token, contentId)
+            ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe(object : SingleObserver<Void> {
                 override fun onSubscribe(d: Disposable) {
@@ -165,5 +174,79 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
         return result
 
+    }
+
+    fun getContentCommentsPaging(
+        token: String,
+        contentId: String,
+        page: Int,
+        size: Int
+    ): MutableLiveData<Resource<CommentsPaging>>? {
+        var result: MutableLiveData<Resource<CommentsPaging>> = MutableLiveData()
+        result.postValue(Resource.loading())
+        mainRepository.getContentComments(token, contentId, page, size)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<CommentsPaging> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: CommentsPaging) {
+                    result.postValue(Resource.success(t))
+                }
+
+                override fun onError(e: Throwable) {
+                    result.postValue(Resource.error(e.handleErrorBody()))
+                }
+            })
+
+        return result
+    }
+
+    fun getComments(
+        token: String,
+        contentId: String,
+    ): LiveData<PagedList<Comment>> {
+        val factory = CommentPagingDataSourceFactory(token, contentId)
+        var liveDataSource = factory.getItemLiveDataSource();
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setPageSize(4)
+            .build()
+
+        val executors = Executors.newFixedThreadPool(5)
+
+        return LivePagedListBuilder(factory, config)
+            .setFetchExecutor(executors).build()
+    }
+
+    fun addNewComment(
+        token: String,
+        addComment: AddComment
+    ): MutableLiveData<Resource<Void>> {
+        var result: MutableLiveData<Resource<Void>> = MutableLiveData()
+        result.value = Resource.loading()
+        mainRepository.apiMainDataSource.addNewComment(token, addComment)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<Void> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: Void) {
+                    result.value = Resource.success(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    result.value = Resource.error(e.handleErrorBody())
+
+                    Log.d("zzzx", "onError: $e ")
+
+
+                }
+            })
+        return result
     }
 }

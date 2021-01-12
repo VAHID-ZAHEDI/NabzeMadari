@@ -36,7 +36,6 @@ class HomeBannerFragment : BaseFragment() {
         var mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
         mainViewModel.getAllBannerNews(getToken())
             .observe(viewLifecycleOwner, {
-                Log.d("ddd", "onViewCreated: ${it.status}")
                 when (it.status) {
                     Status.SUCCESS -> setupViewPager(it.data!!)
 

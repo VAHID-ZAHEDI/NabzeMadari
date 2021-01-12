@@ -7,5 +7,6 @@ data class SubTopic(
     var videosCount: Byte,
     var pdfCount: Byte,
     var imagePath: String,
-    var gradientColor: List<String>
+    var gradientColor: List<String>,
+    var likeCount:Int
 )

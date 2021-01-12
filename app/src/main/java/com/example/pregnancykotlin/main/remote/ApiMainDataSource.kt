@@ -1,10 +1,7 @@
 package com.example.pregnancykotlin.main.remote
 
 import com.example.pregnancykotlin.main.MainDataSource
-import com.example.pregnancykotlin.models.Content
-import com.example.pregnancykotlin.models.MyNews
-import com.example.pregnancykotlin.models.SubTopic
-import com.example.pregnancykotlin.models.Topic
+import com.example.pregnancykotlin.models.*
 import io.reactivex.Single
 
 class ApiMainDataSource : MainDataSource {
@@ -32,6 +29,19 @@ class ApiMainDataSource : MainDataSource {
 
     override fun likeContent(token: String, contentId: String): Single<Void>? {
         return mainApiService?.likeContent(token, contentId)
+    }
+
+    override fun getContentComments(
+        token: String,
+        contentId: String,
+        page: Int,
+        size: Int
+    ): Single<CommentsPaging>? {
+        return mainApiService?.getContentComments(token, contentId, page, size)
+    }
+
+    override fun addNewComment(token: String, addComment: AddComment): Single<Void>? {
+        return mainApiService?.addNewComment(token,addComment)
     }
 
 }

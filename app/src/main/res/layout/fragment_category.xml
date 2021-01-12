@@ -7,11 +7,22 @@
     android:orientation="vertical"
     tools:context=".main.view.CategoryFragment">
 
+    <com.erkutaras.statelayout.StateLayout
+        android:id="@+id/stateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:sl_infoLayout="@layout/layout_error"
+        app:sl_loadingLayout="@layout/layout_loading"
+        app:sl_state="content">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_topics"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutAnimation="@anim/layout_animation"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </com.erkutaras.statelayout.StateLayout>
 
 </LinearLayout>

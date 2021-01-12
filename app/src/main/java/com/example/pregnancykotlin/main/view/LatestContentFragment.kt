@@ -9,8 +9,10 @@ import com.example.pregnancykotlin.BaseFragment
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
+import com.example.pregnancykotlin.main.MainViewModel
 import com.example.pregnancykotlin.main.adapters.LatestContentAdapter
 import kotlinx.android.synthetic.main.fragment_latest_content.*
+import kotlinx.android.synthetic.main.layout_error.*
 
 
 class LatestContentFragment : BaseFragment() {
@@ -28,10 +30,26 @@ class LatestContentFragment : BaseFragment() {
         rv_latestContent.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         var mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
+        getData(mainViewModel)
+    }
+
+    private fun getData(mainViewModel: MainViewModel) {
         mainViewModel.getAllContent(getToken()).observe(viewLifecycleOwner, {
             when (it.status) {
+                Status.LOADING -> stateLayout.loading()
+
                 Status.SUCCESS -> {
-                    rv_latestContent.adapter = LatestContentAdapter(it.data!!)
+                    stateLayout.content()
+                    rv_latestContent.adapter =
+                        LatestContentAdapter(it.data!!, LatestContentAdapter.ContentFrom.LATEST)
+                }
+                Status.ERROR -> {
+
+                    stateLayout.info()
+                    bt_retry.setOnClickListener {
+                        getData(mainViewModel)
+                    }
+
                 }
             }
 

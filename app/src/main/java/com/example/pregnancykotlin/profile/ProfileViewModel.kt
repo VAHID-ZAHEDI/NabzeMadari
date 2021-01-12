@@ -3,9 +3,10 @@ package com.example.pregnancykotlin.profile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pregnancykotlin.login.remote.Resource
+import com.example.pregnancykotlin.models.Content
 import com.example.pregnancykotlin.models.ErrorTest
 import com.example.pregnancykotlin.models.User
-import io.reactivex.Scheduler
+import handleErrorBody
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -38,6 +39,51 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
             })
 
         return user
+    }
+
+    fun setUnsetBookmark(token: String, contentId: String): MutableLiveData<Resource<Void>> {
+        var result: MutableLiveData<Resource<Void>> = MutableLiveData()
+        result.value = Resource.loading()
+        profileRepository.apiProfileDataSource.setUnsetBookmark(token, contentId)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<Void> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: Void) {
+                    result.value = Resource.success(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    result.value = Resource.error(e.handleErrorBody())
+                }
+            })
+
+        return result
+    }
+
+    fun getBookmarkContent(token: String): MutableLiveData<Resource<List<Content>>> {
+        var result: MutableLiveData<Resource<List<Content>>> = MutableLiveData()
+        result.value = Resource.loading()
+        profileRepository.apiProfileDataSource.getBookmarkContent(token)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<List<Content>> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: List<Content>) {
+                    result.value = Resource.success(t)
+                }
+
+                override fun onError(e: Throwable) {
+                    result.value = Resource.error(e.handleErrorBody())
+                }
+            })
+        return result
     }
 
 }

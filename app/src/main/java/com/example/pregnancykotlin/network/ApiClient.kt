@@ -33,7 +33,7 @@ object ApiClient {
                     .readTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(10, TimeUnit.SECONDS)
                     .connectTimeout(10, TimeUnit.SECONDS)
-                    .addInterceptor(ChuckInterceptor(AppConfig.context))
+//                    .addInterceptor(ChuckInterceptor(AppConfig.context))
                     .build()
             )
             .build()

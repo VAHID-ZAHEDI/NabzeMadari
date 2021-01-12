@@ -1,15 +1,16 @@
 package com.example.pregnancykotlin.main.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.models.MyNews
 import com.squareup.picasso.Picasso
 import gradientColor
 import kotlinx.android.synthetic.main.item_home_banner.view.*
-import kotlinx.android.synthetic.main.item_home_banner.view.iv_slider
 
 class HomeBannerAdapter(var myNewsList: ArrayList<MyNews>) :
     RecyclerView.Adapter<HomeBannerAdapter.HomeBannerViewHolder>() {
@@ -25,9 +26,10 @@ class HomeBannerAdapter(var myNewsList: ArrayList<MyNews>) :
         holder.itemView.tv_newsTitle.text = myNewsList[position].title
         Picasso
             .get()
-            .load("http://192.168.1.103:5902/files/${myNewsList[position].imagePath}")
+            .load("${GlobalVariebles.FILE_URL}${myNewsList[position].imagePath}")
             .into(holder.itemView.iv_slider)
-        holder.itemView.ll_title.gradientColor(arrayListOf("#5F0A87","#A4508B"))
+        holder.itemView.ll_title.gradientColor(arrayListOf("#5F0A87", "#A4508B"))
+        Log.d("jcjcj", "${GlobalVariebles.FILE_URL}/${myNewsList[position].imagePath}")
     }
 
     override fun getItemCount(): Int {

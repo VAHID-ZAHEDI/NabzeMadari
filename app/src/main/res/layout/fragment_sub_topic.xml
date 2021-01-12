@@ -6,9 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".main.view.SubTopicFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_subTopics"
+    <com.erkutaras.statelayout.StateLayout
+        android:id="@+id/stateLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:sl_infoLayout="@layout/layout_error"
+        app:sl_loadingLayout="@layout/layout_loading"
+        app:sl_state="content">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_subTopics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.erkutaras.statelayout.StateLayout>
 </FrameLayout>

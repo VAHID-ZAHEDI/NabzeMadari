@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/showContentFragment"
-        android:name="com.example.pregnancykotlin.ShowContentFragment"
+        android:name="com.example.pregnancykotlin.main.view.ShowContentFragment"
         android:label="fragment_show_content"
         tools:layout="@layout/fragment_show_content" >
         <action

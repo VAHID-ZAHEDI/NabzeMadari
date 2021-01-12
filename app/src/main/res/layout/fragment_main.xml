@@ -13,14 +13,36 @@
         android:gravity="right"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="آخرین اخبار"
-            android:textColor="@color/gray_text_faded"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/gray_text_faded" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="آخرین اخبار"
+                android:drawableRight="@drawable/health_news"
+                android:drawablePadding="7dp"
+                android:drawableTint="@color/gray_text_faded"
+                android:textColor="@color/gray_text_faded"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/gray_text_faded" />
+        </LinearLayout>
 
         <fragment
             android:id="@+id/fr_banner"
@@ -29,14 +51,36 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
 
-        <TextView
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="آخرین مطالب"
-            android:textColor="@color/gray_text_faded"
-            android:textSize="18sp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/gray_text_faded" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawablePadding="7dp"
+                android:drawableRight="@drawable/content"
+                android:drawableTint="@color/gray_text_faded"
+                android:text="آخرین مطالب"
+                android:textColor="@color/gray_text_faded"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/gray_text_faded" />
+        </LinearLayout>
 
         <fragment
             android:id="@+id/lastestContent"

@@ -10,8 +10,10 @@ import com.example.pregnancykotlin.BaseFragment
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
+import com.example.pregnancykotlin.profile.ProfileViewModel
 import gradientColor
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.layout_error.*
 
 class ProfileFragment : BaseFragment() {
 
@@ -31,13 +33,19 @@ class ProfileFragment : BaseFragment() {
         ll_profile.gradientColor(arrayListOf("#647DEE", "#7F53AC"))
 
         var profileViewModel = DaggerInstanceComponent.builder().build().getProfileViewModel()
+        getData(profileViewModel)
+
+
+    }
+
+    private fun getData(profileViewModel: ProfileViewModel) {
 
         profileViewModel.getUserInfo(getToken())
             .observe(viewLifecycleOwner, {
                 when (it.status) {
-                    Status.LOADING -> (activity as BaseActivity).showLoadingDialog()
+                    Status.LOADING -> stateLayout.loading()
                     Status.SUCCESS -> {
-                        (activity as BaseActivity).dismissLoadingDialog()
+                        stateLayout.content()
                         tv_name.text = "${it.data?.firstName} ${it.data?.lastName}"
                         tv_age.text = it.data?.age.toString()
                         tv_weight.text = it.data?.weight.toString()
@@ -45,9 +53,14 @@ class ProfileFragment : BaseFragment() {
                         bt_phoneNumber.text = it.data?.phoneNumber
 
                     }
+                    Status.ERROR -> {
+                        stateLayout.info()
+                        bt_retry.setOnClickListener {
+                            getData(profileViewModel)
+                        }
+                    }
                 }
             })
-
     }
 
 }

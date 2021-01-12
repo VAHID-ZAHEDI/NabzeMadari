@@ -1,14 +1,14 @@
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.media.MediaMetadataRetriever
-import android.os.Build
 import android.view.View
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
+import com.erkutaras.statelayout.StateLayout
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.models.ErrorTest
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
-import kotlinx.android.synthetic.main.fragment_calculator.*
+import kotlinx.android.synthetic.main.layout_error.view.*
 import retrofit2.HttpException
 
 
@@ -29,6 +29,7 @@ fun Throwable.handleErrorBody(): ErrorTest? {
         val adapter: TypeAdapter<ErrorTest> =
             gson.getAdapter(ErrorTest::class.java)
         errorBody = adapter.fromJson(body!!.string())
+//        if (errorBody.httpErrorCode)
     }
     return errorBody
 }
@@ -103,10 +104,10 @@ fun TabLayout.changeIconColor(viewPager2: ViewPager2) {
     })
 
 
-
 }
+
 fun ImageView.retrieveVideoFrameFromVideo(videoPath: String?) {
-    var bitmap:Bitmap
+    var bitmap: Bitmap
     var mediaMetadataRetriever: MediaMetadataRetriever? = null
     try {
         mediaMetadataRetriever = MediaMetadataRetriever()

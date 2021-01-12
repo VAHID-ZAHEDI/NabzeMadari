@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/categoryFragment">
 
     <fragment
         android:id="@+id/profileFragment"
@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_profileFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_details_activity"
+            app:destination="@id/details_activity" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -88,4 +91,13 @@
             app:argType="string" />
 
     </activity>
+    <fragment
+        android:id="@+id/latestContentFragment"
+        android:name="com.example.pregnancykotlin.main.view.LatestContentFragment"
+        android:label="fragment_latest_content"
+        tools:layout="@layout/fragment_latest_content" >
+        <action
+            android:id="@+id/action_latestContentFragment_to_details_activity"
+            app:destination="@id/details_activity" />
+    </fragment>
 </navigation>
