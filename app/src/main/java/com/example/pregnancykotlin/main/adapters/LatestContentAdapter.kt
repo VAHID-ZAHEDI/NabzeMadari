@@ -38,22 +38,19 @@ class LatestContentAdapter(var contents: ArrayList<Content>, var type: ContentFr
         holder.itemView.tv_title.text = contents[position].title
         val options = RequestOptions().frame(android.R.attr.thumb.toLong())
         Glide.with(context!!)
-            .load("${GlobalVariebles.FILE_URL}${contents[position].mediaList[0].url}")
+            .load("${GlobalVariebles.FILE_URL}${contents[position].image}")
             .apply(options)
             .into(holder.itemView.iv_content)
         holder.itemView.ll_title.gradientColor(arrayListOf("#009FFD", "#2A2A72"))
         holder.itemView.setOnClickListener {
 
-            val direction: NavDirections
-            if (ContentFrom.LATEST == type) {
-                direction =
-                    MainFragmentDirections.actionMainFragmentToDetailsActivity(
-                        contents[position].subTopicId
-                    )
+            val direction: NavDirections = if (ContentFrom.LATEST == type) {
+                MainFragmentDirections.actionMainFragmentToDetailsActivity(
+                    contents[position].subTopicId
+                )
             } else {
 
-                direction =
-                    ProfileFragmentDirections.actionProfileFragmentToDetailsActivity(contents[position].subTopicId)
+                ProfileFragmentDirections.actionProfileFragmentToDetailsActivity(contents[position].subTopicId)
             }
 
             it.findNavController().navigate(direction)

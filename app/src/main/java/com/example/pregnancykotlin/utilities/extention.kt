@@ -5,7 +5,10 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.media.MediaMetadataRetriever
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
 import com.erkutaras.statelayout.StateLayout
@@ -17,6 +20,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
+import kotlinx.android.synthetic.main.fragment_show_content.*
 import kotlinx.android.synthetic.main.layout_error.view.*
 import retrofit2.HttpException
 
@@ -125,4 +129,9 @@ fun ImageView.retrieveVideoFrameFromVideo(videoPath: String?) {
     }
 
     this.setImageBitmap(bitmap)
+}
+fun View.startFadeIn(){
+    val fadeIn: Animation = AlphaAnimation(0.0f, 1.0f)
+    fadeIn.duration = 500
+    this.startAnimation(fadeIn)
 }

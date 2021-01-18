@@ -23,13 +23,13 @@ class IntroActivity : AppIntro() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        isColorTransitionsEnabled = true
+        isColorTransitionsEnabled = false
         msp = DaggerPregnancyComponent.builder().setContext(this).build().getSafePref()
 
         addSlide(
             AppIntroFragment.newInstance(
                 title = "به اپلیکیشن خوش‌آمدید",
-                description = "اپلیکیشن آمادگی برای زایمان، طبق دستورالعمل وزارت بهداشت، درمان و آموزش پزشکی و زیر نظر دانشگاه علوم پزشکی ایران طراحی شده و بلافاصله پس از اطلاع از بارداری قابل استفاده میباشد",
+                description = getString(R.string.intro),
                 backgroundColor = Color.parseColor("#673AB7"),
                 imageDrawable = R.drawable.ic_logo_intro,
                 backgroundDrawable = R.color.red_statusbar,
@@ -39,17 +39,7 @@ class IntroActivity : AppIntro() {
 
             )
         )
-
-
-        addSlide(
-            AppIntroFragment.newInstance(
-                backgroundColor = Color.parseColor("#FF5722"),
-                title = "COVID-19",
-                imageDrawable = R.drawable.ic_covid,
-                descriptionColor = resources.getColor(R.color.descriptionColor),
-                description = "همچنین اپلیکیشن حاضر دارای آخرین اطلاعات مربوط به اپیدمی COVID-19 در دوران بارداری، زایمان و شیردهی میباشد"
-            )
-        )
+        addSlide(IntroVideoFragment())
         setTransformer(
             AppIntroPageTransformerType.Parallax(
                 titleParallaxFactor = -3.0,

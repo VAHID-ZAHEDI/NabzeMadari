@@ -21,4 +21,15 @@ interface ProfileApiServices {
     @Headers("Accept: application/json")
     @GET("getBookmarkContent")
     fun getBookmarkContent(@Header("Authorization") authorization: String): Single<List<Content>>
+
+    @FormUrlEncoded
+    @POST("/updateUserInfo")
+    @Headers("Accept: application/json")
+    fun updateUserInfo(
+        @Header("Authorization") authorization: String,
+        @Field("firstName") firstName: String,
+        @Field("lastName") lastName: String,
+        @Field("height") height: Int,
+        @Field("weight") weight: Int
+    ): Single<User>
 }

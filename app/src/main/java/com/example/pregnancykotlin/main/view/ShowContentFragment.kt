@@ -2,7 +2,9 @@ package com.example.pregnancykotlin.main.view
 
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,12 +29,15 @@ import com.example.pregnancykotlin.main.adapters.CommentAdapter
 import com.example.pregnancykotlin.models.AddComment
 import com.example.pregnancykotlin.models.Content
 import com.example.pregnancykotlin.models.Media
+import com.example.pregnancykotlin.models.SubContent
 import com.example.pregnancykotlin.ui.ProgressOutlineProvider
 import com.example.pregnancykotlin.utilities.Dialogs
+import com.google.android.material.tabs.TabLayout
 import com.like.LikeButton
 import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.fragment_show_content.*
 import kotlinx.android.synthetic.main.layout_error.*
+import startFadeIn
 import kotlin.math.abs
 
 
@@ -67,7 +72,7 @@ class ShowContentFragment : BaseFragment() {
         } else {
             toolbar.title = content?.title
             collapsing_toolbar_layout.title = content?.title
-            setupViewPager(content?.mediaList)
+//            setupViewPager(content?.mediaList)
             tv_text.text = content?.text
         }
 
@@ -87,15 +92,16 @@ class ShowContentFragment : BaseFragment() {
                         stateLayout.content()
                         toolbar.title = it.data?.title
                         collapsing_toolbar_layout.title = it.data?.title
-                        setupViewPager(it.data?.mediaList)
                         tv_text.text = it.data?.text
                         content = it.data!!
                         contentId = it.data._id
                         bt_like.isLiked = content.userLike
                         getCommentData()
                         manageBookmark()
+                        initTab(it.data.subContents)
                     }
                     Status.ERROR -> {
+                        Log.d("zzz", "getData: ${it.error?.message}")
                         stateLayout.info()
                         bt_retry.setOnClickListener {
                             getData()
@@ -161,6 +167,7 @@ class ShowContentFragment : BaseFragment() {
     }
 
     private fun setupViewPager(bannerData: ArrayList<Media>?) {
+        vp_banner.startFadeIn()
         vp_banner.adapter =
             BannerAdapter(
                 bannerData!!
@@ -179,27 +186,6 @@ class ShowContentFragment : BaseFragment() {
 
         worm_dots_indicator.setViewPager2(vp_banner)
     }
-
-//    private fun initScaleLayout(){
-//        sl.setListener(object : ScalingLayoutListener {
-//            override fun onCollapsed() {}
-//            override fun onExpanded() {}
-//            override fun onProgress(progress: Float) {
-//                if (pop != null) {
-//                    pop!!.updateProgress(sl.settings.maxRadius, progress)
-//                }
-//            }
-//        })
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//            pop = ProgressOutlineProvider()
-//            sl.outlineProvider = pop
-//            sl.clipToOutline = true
-//            sl.post(Runnable {
-//                pop!!.updateProgress(sl.settings.maxRadius, 1F)
-//                sl.invalidateOutline()
-//            })
-//        }
-//    }
 
     private fun initCommentRecyclerView() {
         rv_comments.apply {
@@ -262,6 +248,36 @@ class ShowContentFragment : BaseFragment() {
                             })
                 })
         }
+    }
+
+    private fun initTab(subContents: ArrayList<SubContent>) {
+        for (i in 0 until subContents.size) {
+            tab_layout.addTab(tab_layout.newTab().setText(subContents[i].title))
+        }
+        tv_text.text = subContents[0].text
+        setupViewPager(subContents[0].mediaList)
+
+        tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(p0: TabLayout.Tab?) {
+                if (p0 != null) {
+                    tv_text.startFadeIn()
+                    tv_text.text = subContents[p0.position].text
+                    setupViewPager(subContents[p0.position].mediaList)
+//                    tab_layout.setSelectedTabIndicatorColor(Color.parseColor(subContents[p0.position].color))
+
+                }
+            }
+
+
+        })
+//        tv_text.setText()
     }
 
 }

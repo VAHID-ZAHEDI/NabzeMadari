@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_profileFragment_to_details_activity"
             app:destination="@id/details_activity" />
+        <action
+            android:id="@+id/action_profileFragment_to_editFragment"
+            app:destination="@id/editFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -100,4 +103,23 @@
             android:id="@+id/action_latestContentFragment_to_details_activity"
             app:destination="@id/details_activity" />
     </fragment>
+    <dialog
+        android:id="@+id/editFragment"
+        android:name="com.example.pregnancykotlin.profile.view.EditFragment"
+        android:label="EditFragment" >
+        <argument
+            android:name="firstName"
+            app:argType="string" />
+        <argument
+            android:name="lastName"
+            app:argType="string" />
+        <argument
+            android:name="height"
+            app:argType="integer" />
+        <argument android:name="weight"
+            app:argType="integer" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </dialog>
 </navigation>

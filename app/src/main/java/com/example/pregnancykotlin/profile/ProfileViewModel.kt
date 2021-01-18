@@ -17,6 +17,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor() : ViewModel() {
     var profileRepository = ProfileRepository()
     private val compositeDisposable = CompositeDisposable()
+    var userLiveData: MutableLiveData<Resource<User>> = MutableLiveData()
 
     fun getUserInfo(token: String): MutableLiveData<Resource<User>> {
         var user: MutableLiveData<Resource<User>> = MutableLiveData()
@@ -85,5 +86,34 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
             })
         return result
     }
+
+    fun updateUserInfo(
+        token: String,
+        firstName: String,
+        lastName: String,
+        height: Int,
+        weight: Int
+    ): MutableLiveData<Resource<User>> {
+        userLiveData.value = Resource.loading()
+        profileRepository.updateUserInfo(token, firstName, lastName, height, weight)
+            ?.subscribeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe(object : SingleObserver<User> {
+                override fun onSubscribe(d: Disposable) {
+                    compositeDisposable.add(d)
+                }
+
+                override fun onSuccess(t: User) {
+                    userLiveData.postValue( Resource.success(t))
+                }
+
+                override fun onError(e: Throwable) {
+                    userLiveData.value = Resource.error(e.handleErrorBody())
+                }
+            })
+
+        return userLiveData
+    }
+
 
 }

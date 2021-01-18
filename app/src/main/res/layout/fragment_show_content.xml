@@ -47,7 +47,6 @@
                         app:layout_collapseParallaxMultiplier="0.7"
                         app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
 
-
                         <androidx.viewpager2.widget.ViewPager2
                             android:id="@+id/vp_banner"
                             android:layout_width="match_parent"
@@ -70,6 +69,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/vp_banner" />
+
                     </LinearLayout>
 
                     <com.google.android.material.appbar.MaterialToolbar
@@ -120,7 +120,41 @@
 
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    app:layout_collapseMode="pin"
+                    app:tabGravity="center"
+                    app:tabMode="scrollable"
+                    android:gravity="bottom|center_horizontal"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:animateLayoutChanges="true"
+                    android:background="@drawable/tab_back"
+                    android:elevation="7dp"
+                    android:layoutAnimation="@anim/layout_animation"
+                    android:layoutDirection="rtl"
+                    android:textDirection="rtl"
+                    app:tabIndicator="@drawable/tab_selected"
+                    app:tabIndicatorAnimationDuration="500"
+                    app:tabIndicatorColor="@color/blue"
+                    app:tabIndicatorGravity="stretch"
+                    app:tabInlineLabel="true"
+                    android:layout_gravity="right"
+                    app:tabRippleColor="@null"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextAppearance="@style/TabTextAppearance"
+                    app:tabTextColor="@color/gray_text_faded">
 
+
+                </com.google.android.material.tabs.TabLayout>
+                </LinearLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.core.widget.NestedScrollView
@@ -201,6 +235,7 @@
                 app:icon="@drawable/ic_comment"
                 app:iconTint="@color/white"
                 app:tint="@null" />
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </com.erkutaras.statelayout.StateLayout>
 </FrameLayout>

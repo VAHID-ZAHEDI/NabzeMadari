@@ -19,4 +19,14 @@ class ProfileRepository : ProfileDataSource {
         return apiProfileDataSource?.getBookmarkContent(token)
     }
 
+    override fun updateUserInfo(
+        token: String,
+        firstName: String,
+        lastName: String,
+        height: Int,
+        weight: Int
+    ): Single<User>? {
+        return apiProfileDataSource.updateUserInfo(token, firstName, lastName, height, weight)
+    }
+
 }

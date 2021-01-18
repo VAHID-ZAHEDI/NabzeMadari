@@ -50,7 +50,7 @@
                 android:layout_marginTop="5dp"
                 app:gv_currentValue="70"
                 app:gv_maxValue="200"
-                app:gv_minValue="50"
+                app:gv_minValue="40"
                 app:zjun_bgColor="@color/transparent"
                 app:zjun_gradationColor="@color/height"
                 app:zjun_indicatorLineColor="@color/white"

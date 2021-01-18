@@ -19,4 +19,14 @@ class ApiProfileDataSource : ProfileDataSource {
         return profileApiServices?.getBookmarkContent(token)
     }
 
+    override fun updateUserInfo(
+        token: String,
+        firstName: String,
+        lastName: String,
+        height: Int,
+        weight: Int
+    ): Single<User>? {
+        return profileApiServices?.updateUserInfo(token, firstName, lastName, height, weight)
+    }
+
 }
