@@ -23,8 +23,8 @@ class CategoryFragment : BaseFragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         var view: View? = null
         if (view == null) {
@@ -35,7 +35,7 @@ class CategoryFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        changeToolbarTitle("دسته بندی")
+//        changeToolbarTitle("دسته بندی")
         if (mainViewModel == null) {
             mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
             getData()
@@ -50,28 +50,28 @@ class CategoryFragment : BaseFragment() {
 
     private fun getData() {
         mainViewModel!!.getAllTopics(getToken())
-            .observe(viewLifecycleOwner,
-                Observer {
-                    when (it.status) {
-                        Status.LOADING -> stateLayout.loading()
-                        Status.SUCCESS -> {
-                            stateLayout.content()
-                            topics = it.data!!
-                            var headerAdapter = MainTopicAdapter(it.data!!)
-                            rv_topics.layoutManager = LinearLayoutManager(activity)
-                            rv_topics.adapter = headerAdapter
+                .observe(viewLifecycleOwner,
+                        Observer {
+                            when (it.status) {
+                                Status.LOADING -> stateLayout.loading()
+                                Status.SUCCESS -> {
+                                    stateLayout.content()
+                                    topics = it.data!!
+                                    var headerAdapter = MainTopicAdapter(it.data!!)
+                                    rv_topics.layoutManager = LinearLayoutManager(activity)
+                                    rv_topics.adapter = headerAdapter
 
-                        }
-                        Status.ERROR -> {
-                            stateLayout.info()
-                            bt_retry.setOnClickListener {
-                                getData()
+                                }
+                                Status.ERROR -> {
+                                    stateLayout.info()
+                                    bt_retry.setOnClickListener {
+                                        getData()
+                                    }
+                                }
                             }
-                        }
-                    }
 
 
-                })
+                        })
     }
 
 }

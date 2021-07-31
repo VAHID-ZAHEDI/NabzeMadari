@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.MutableLiveData
 import com.example.pregnancykotlin.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -12,6 +14,7 @@ import com.labters.lottiealertdialoglibrary.LottieAlertDialog
 
 object Dialogs {
     private lateinit var alertDialog: LottieAlertDialog
+    private lateinit var dialog: AlertDialog
     fun showLoadingDialog(context: Context) {
         alertDialog = LottieAlertDialog.Builder(context, DialogTypes.TYPE_CUSTOM, "loading.json")
             .setTitle("در حال ارسال")
@@ -42,5 +45,24 @@ object Dialogs {
         }
         builder.show()
         return onSendComment
+    }
+    fun showResourceDialog(context :Context){
+         var builder :AlertDialog.Builder=AlertDialog.Builder(context)
+        var view=LayoutInflater.from(context).inflate(R.layout.dialog_resource,null,false)
+
+        //set title for alert dialog
+        builder.setView(view)
+        builder.setTitle(R.string.titlealert)
+        //set message for alert dialog
+        builder.setIcon(R.drawable.ic_books_stack_of_three)
+
+        builder.setNegativeButton("No"){dialogInterface, which ->
+            Toast.makeText(context,"clicked No", Toast.LENGTH_LONG).show()
+        }
+        // Create the AlertDialog
+        // Set other dialog properties
+        dialog=builder.create()
+        dialog.setCancelable(true)
+        dialog.show()
     }
 }

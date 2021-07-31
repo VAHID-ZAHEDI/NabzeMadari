@@ -63,20 +63,27 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical|left">
 
-                <com.github.lany192.picker.NumberPicker
+                <com.shawnlin.numberpicker.NumberPicker
                     android:id="@+id/np_height"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
-                    app:internalMaxHeight="130dp"
-                    app:internalMinWidth="150dp"
-                    app:selectionDivider="@color/height"
-                    app:selectionDividerHeight="1px"
-                    app:selectionDividersDistance="40dp"
-                    app:selectionTextColor="@color/white"
-                    app:selectionTextSize="16sp"
-                    app:solidColor="@android:color/transparent" />
-
+                    app:np_selectedTextSize="16sp"
+                    app:np_selectedTextColor="@color/white"
+                    app:np_dividerDistance="40dp"
+                    app:np_dividerColor="@color/height2"
+                    app:np_divider="@color/height2"
+                    app:np_textSize="13sp"
+                    app:np_textColor="@color/height2"
+                    />
+                <!--app:internalMaxHeight="130dp"
+                app:internalMinWidth="150dp"
+                app:selectionDivider="@color/height"
+                app:selectionDividerHeight="1px"
+                app:selectionDividersDistance="40dp"
+                app:selectionTextColor="@color/white"
+                app:selectionTextSize="16sp"
+                app:solidColor="@android:color/transparent"-->
 
                 <ImageView
                     android:layout_width="wrap_content"

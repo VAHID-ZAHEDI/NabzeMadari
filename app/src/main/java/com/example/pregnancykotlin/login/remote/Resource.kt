@@ -6,6 +6,7 @@ import com.example.pregnancykotlin.models.ErrorTest
 
 class Resource<T> private constructor(val status: Status, val data: T?, val error: ErrorTest?) {
     companion object {
+
         fun <T> success(data: T?): Resource<T> {
             return Resource(Status.SUCCESS, data, null)
         }

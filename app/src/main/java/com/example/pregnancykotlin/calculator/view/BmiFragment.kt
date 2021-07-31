@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
-import com.github.lany192.picker.NumberPicker
+//import com.github.lany192.picker.NumberPicker
+import com.shawnlin.numberpicker.NumberPicker
 import gradientColor
 import kotlinx.android.synthetic.main.fragment_bmi.*
+import kotlinx.android.synthetic.main.fragment_bmi.view.*
 import java.text.DecimalFormat
 
 class BmiFragment : Fragment() {
@@ -37,6 +39,8 @@ class BmiFragment : Fragment() {
         np_height.displayedValues = values.toTypedArray()
         np_height.maxValue = values.size - 1
         np_height.minValue = 0
+        np_height.
+        np_height.typeface = Typeface.createFromAsset(activity?.assets,"Vazir.ttf")
         tv_height.text = values[0]
 //        height = values[0].toInt()
 
