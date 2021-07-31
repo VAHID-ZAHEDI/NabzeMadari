@@ -13,6 +13,7 @@ class VideoPlayerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_player)
         player.setSource(Uri.parse(args.videoUrl))
+//        player.setSource(Uri.parse("https://dls.music-fa.com/tagdl/99/Mohsen%20Yeganeh%20-%20Remix%20Behet%20Ghol%20Midam%20(128).mp3"))
         player.setAutoPlay(true)
 
 

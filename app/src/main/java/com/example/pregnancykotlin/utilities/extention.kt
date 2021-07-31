@@ -8,30 +8,25 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
-import com.erkutaras.statelayout.StateLayout
 import com.example.pregnancykotlin.R
-import com.example.pregnancykotlin.models.ErrorTest
+import com.example.pregnancykotlin.models.Errors
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
-import kotlinx.android.synthetic.main.fragment_show_content.*
-import kotlinx.android.synthetic.main.layout_error.view.*
 import retrofit2.HttpException
 
 
-fun Throwable.handleErrorBody(): ErrorTest? {
-    var errorBody: ErrorTest? = null
+fun Throwable.handleErrorBody(): Errors? {
+    var errorBody: Errors? = null
     if (this is HttpException) {
         val body = this.response()?.errorBody()
         val gson = Gson()
-        val adapter: TypeAdapter<ErrorTest> =
-            gson.getAdapter(ErrorTest::class.java)
+        val adapter: TypeAdapter<Errors> =
+            gson.getAdapter(Errors::class.java)
         errorBody = adapter.fromJson(body!!.string())
 //        if (errorBody.httpErrorCode)
     }

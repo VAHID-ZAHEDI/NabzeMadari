@@ -23,7 +23,7 @@ open class BaseFragment : Fragment() {
 
     fun getToken(): String {
         return DaggerPregnancyComponent.builder().setContext(activity as Context).build()
-            .getSafePref().getSharedPreferences(GlobalVariebles.TOKEN, PrefObject.STRING) as String
+            .getSafePref().getSharedPreferences(GlobalVariables.TOKEN, PrefObject.STRING) as String
     }
 
     fun changeToolbarTitle(title: String) {

@@ -5,7 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.pregnancykotlin.GlobalVariebles
+import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
 import com.example.pregnancykotlin.login.view.LoginActivity
@@ -16,7 +16,6 @@ import com.github.appintro.AppIntroPageTransformerType
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
 class IntroActivity : AppIntro() {
-    var msp: SafePref? = null
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
     }
@@ -24,11 +23,10 @@ class IntroActivity : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isColorTransitionsEnabled = false
-        msp = DaggerPregnancyComponent.builder().setContext(this).build().getSafePref()
 
         addSlide(
             AppIntroFragment.newInstance(
-                title = "به اپلیکیشن خوش‌آمدید",
+                title = "به نبض مادری خوش‌آمدید",
                 description = getString(R.string.intro),
                 backgroundColor = Color.parseColor("#673AB7"),
                 imageDrawable = R.drawable.ic_logo_intro,
@@ -39,7 +37,6 @@ class IntroActivity : AppIntro() {
 
             )
         )
-        addSlide(IntroVideoFragment())
         setTransformer(
             AppIntroPageTransformerType.Parallax(
                 titleParallaxFactor = -3.0,
@@ -47,12 +44,13 @@ class IntroActivity : AppIntro() {
                 descriptionParallaxFactor = -2.0
             )
         )
+        addSlide(IntroVideoFragment.newInstance())
+
 
     }
 
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
-        msp?.setSharedPreferences(GlobalVariebles.INTRO_SHOW, true)
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
 
@@ -60,7 +58,6 @@ class IntroActivity : AppIntro() {
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
-        msp?.setSharedPreferences(GlobalVariebles.INTRO_SHOW, true)
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }

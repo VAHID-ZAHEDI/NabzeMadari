@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".profile.view.CommunicationFragment">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_telegram"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:iconTint="@null"
+        android:backgroundTint="@color/white"
+        android:gravity="right|center_vertical"
+        android:text="تلگرام"
+        android:drawablePadding="5dp"
+        android:textColor="@color/gray_text_faded"
+        android:textSize="15sp"
+        app:icon="@drawable/telegram"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.110000014"
+        app:rippleColor="@color/colorPrimary" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bt_instagram"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:iconTint="@null"
+        android:backgroundTint="@color/white"
+        android:gravity="right|center_vertical"
+        android:text="اینستاگرام"
+        android:textColor="@color/gray_text_faded"
+        android:textSize="15sp"
+        app:icon="@drawable/instagram"
+        android:drawablePadding="5dp"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.110000014"
+        app:rippleColor="@color/colorPrimary" />
+
+</LinearLayout>

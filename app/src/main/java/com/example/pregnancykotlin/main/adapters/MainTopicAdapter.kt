@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pregnancykotlin.GlobalVariebles
+import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.main.view.CategoryFragmentDirections
 import com.example.pregnancykotlin.models.Topic
@@ -38,7 +38,7 @@ class MainTopicAdapter(var headers: List<Topic>) :
         holder.itemView.cl_header.gradientColor(colors)
         Picasso
             .get()
-            .load("${GlobalVariebles.FILE_URL}${headers[position].imagePath}")
+            .load("${GlobalVariables.FILE_URL}${headers[position].imagePath}")
             .into(holder.itemView.iv_topic)
         var str: String? = ""
         for (i in headers[position].description.size - 1 downTo 0 step 1) {

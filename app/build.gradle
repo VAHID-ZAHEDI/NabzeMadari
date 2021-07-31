@@ -9,20 +9,22 @@ apply plugin: 'com.google.firebase.crashlytics'
 
 
 android {
+
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.example.pregnancykotlin"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         multiDexEnabled true
         versionName "1.0"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -42,7 +44,17 @@ android {
         it.buildConfigField 'String', 'H', h
         it.buildConfigField 'String', 'P', p
     }
-
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
 }
 allprojects {
     repositories {
@@ -50,6 +62,13 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         maven { url 'https://maven.google.com' }
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url 'https://kotlin.bintray.com/kotlinx' }
+        maven { url 'https://dl.bintray.com/sysdata/maven' }
+        maven { url 'http://repo.pageturner-reader.org' }
+        maven {
+            url 'https://esri.jfrog.io/artifactory/arcgis'
+        }
 
 
     }
@@ -57,25 +76,25 @@ allprojects {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0-alpha03'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'com.google.firebase:firebase-analytics-ktx:18.0.0'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:17.3.0'
-    implementation 'com.google.firebase:firebase-messaging:21.0.1'
-    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
-    implementation 'com.google.firebase:firebase-analytics:18.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.firebase:firebase-analytics-ktx:19.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.0'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.0'
+    implementation 'com.google.firebase:firebase-analytics:19.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
@@ -83,12 +102,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.15'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    api 'com.google.dagger:dagger:2.27'
-    kapt 'com.google.dagger:dagger-compiler:2.17'
+    api 'com.google.dagger:dagger:2.35.1'
+    kapt 'com.google.dagger:dagger-compiler:2.35.1'
 
     implementation 'com.vicmikhailau:MaskedEditText:3.0.4'
 //jetpack navigation
-    def nav_version = "2.3.0"
+    def nav_version = "2.3.5"
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -96,7 +115,7 @@ dependencies {
     implementation 'io.github.inflationx:calligraphy3:3.1.1'
     implementation 'io.github.inflationx:viewpump:2.0.3'
     def lifecycle_version = "2.2.0"
-    def arch_version = "2.2.0"
+    def arch_version = "2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     // LiveData
@@ -104,7 +123,7 @@ dependencies {
     //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
-    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.1'
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
     implementation 'com.airbnb.android:lottie:3.4.4'
     implementation 'com.github.mayuce:LottieAlertDialog:1.2'
 
@@ -114,7 +133,7 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
-    implementation "androidx.exifinterface:exifinterface:1.3.1"
+    implementation "androidx.exifinterface:exifinterface:1.3.2"
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
@@ -144,7 +163,7 @@ dependencies {
     implementation 'com.jackandphantom.android:androidlikebutton:1.2.0'
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
-    def paging_version = "2.1.2"
+    def paging_version = "3.1.0"
 
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     // For Kotlin use paging-runtime-ktx
@@ -164,11 +183,25 @@ dependencies {
     implementation 'com.eftimoff:android-pathview:1.0.8@aar'
 
     //intro
-    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+//    implementation 'com.github.AppIntro:AppIntro:6.0.0'
+    implementation project(':appintro')
 
     //stateLayout
     implementation 'com.github.erkutaras:StateLayout:1.5.0'
     implementation 'com.github.gturedi:StatefulLayout:1.2.2'
+//justify
+    implementation 'com.codesgood:justifiedtextview:1.1.0'
+    implementation 'com.uncopt:android.justified:1.0'
+    implementation 'com.github.erkutaras:ShowcaseView:1.5.0'
+    implementation 'com.github.bluejamesbond:textjustify-android:2.1.6'
+    implementation 'me.biubiubiu.justifytext:library:1.1'
+
+    implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'
+
+    implementation 'org.sufficientlysecure:html-textview:4.0'
+    implementation 'com.github.SakaGamer:html-textview:1.0.8'
+    implementation 'it.sysdata.mobile:htmlspanner:1.0.2'
+    implementation 'net.sourceforge.htmlcleaner:htmlcleaner:2.16'
 
 
 

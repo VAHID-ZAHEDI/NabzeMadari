@@ -48,11 +48,12 @@ class SubTopicFragment : BaseFragment() {
                     Status.LOADING -> stateLayout.loading()
                     Status.SUCCESS -> {
                         stateLayout.content()
-                        rv_subTopics.setHasFixedSize(true)
-                        rv_subTopics.layoutManager = LinearLayoutManager(activity)
-                        var adapter = SubTopicAdapter(it.data!!)
-                        rv_subTopics.adapter = adapter
-
+                        var subTopicAdapter = SubTopicAdapter(it.data!!)
+                        rv_subTopics.apply {
+                            setHasFixedSize(true)
+                            layoutManager = LinearLayoutManager(activity)
+                            adapter = subTopicAdapter
+                        }
                     }
                     Status.ERROR -> {
                         stateLayout.info()

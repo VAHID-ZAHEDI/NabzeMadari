@@ -6,10 +6,9 @@ import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import com.example.pregnancykotlin.BaseActivity
-import com.example.pregnancykotlin.GlobalVariebles
+import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
-import com.example.pregnancykotlin.login.view.LoginActivity
 import com.example.pregnancykotlin.utilities.PrefObject
 import com.readystatesoftware.chuck.internal.ui.MainActivity
 import java.util.*
@@ -22,7 +21,7 @@ class SplashActivity : BaseActivity() {
         var hasSignIn: Boolean
         var msp = DaggerPregnancyComponent.builder().setContext(this).build().getSafePref()
         hasSignIn = msp.getSharedPreferences(
-            GlobalVariebles.HAS_SIGN_IN,
+            GlobalVariables.HAS_SIGN_IN,
             PrefObject.BOOLEAN
         ) as Boolean
         Handler().postDelayed({

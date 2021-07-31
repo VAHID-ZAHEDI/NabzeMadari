@@ -1,8 +1,6 @@
 package com.example.pregnancykotlin.main.view
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.pregnancykotlin.BaseFragment
-import com.example.pregnancykotlin.GlobalVariebles
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status

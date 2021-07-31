@@ -17,6 +17,8 @@ import ir.hamsaa.persiandatepicker.Listener
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog
 import ir.hamsaa.persiandatepicker.util.PersianCalendar
 import kotlinx.android.synthetic.main.fragment_child_birth.*
+import kotlinx.android.synthetic.main.fragment_child_birth.cl_edd
+import kotlinx.android.synthetic.main.fragment_pregnancy_age.*
 
 
 class ChildBirthFragment : Fragment() {
@@ -33,6 +35,7 @@ class ChildBirthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         cl_edd.gradientColor(arrayListOf("#11998e", "#38ef7d"))
         var calculator = Calculator()
+        var currentDate=PersianCalendar()
         bt_dateSelect.setOnClickListener {
             var typeface = Typeface.createFromAsset(activity?.assets, "Vazir.ttf")
             var picker = PersianDatePickerDialog(activity)
@@ -40,7 +43,7 @@ class ChildBirthFragment : Fragment() {
                 .setNegativeButton("بیخیال")
                 .setTodayButton("امروز")
                 .setTodayButtonVisible(true)
-                .setMinYear(1300)
+                .setMinYear(currentDate.persianYear-1)
                 .setMaxYear(PersianDatePickerDialog.THIS_YEAR)
 //            .setInitDate(initDate)
                 .setActionTextColor(Color.GRAY)
@@ -49,7 +52,7 @@ class ChildBirthFragment : Fragment() {
                 .setShowInBottomSheet(true)
                 .setListener(object : Listener {
                     override fun onDateSelected(persianCalendar: PersianCalendar?) {
-                        tv_date.text = persianCalendar?.persianLongDate
+                        tv_date.text = "تاریخ آخرین قائدگی: ${persianCalendar?.persianLongDate}"
                         tv_description.text = "تاریخ تقریبی زایمان شما برابر است با ${calculator.calculateChildBirth(persianCalendar!!.persianDay, persianCalendar!!.persianMonth, persianCalendar!!.persianYear)}"
 
                     }

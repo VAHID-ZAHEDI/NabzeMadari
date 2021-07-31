@@ -44,20 +44,14 @@ class ProfileFragment : BaseFragment() {
         iv_edit.setOnClickListener {
             showBottomSheet()
         }
-//        val editFragment = DaggerInstanceComponent.builder().build().getEditFragment()
-//        editFragment.getUser().observe(viewLifecycleOwner, Observer {
-//            Toast.makeText(activity,"salam",Toast.LENGTH_LONG).show()
-//            tv_name.text = "${it.firstName} ${it.lastName}"
-//            tv_weight.text=it.weight.toString()
-//            tv_height.text=it.height.toString()
-//        })
+
         model.userLiveData.observe(viewLifecycleOwner, Observer {
-            when(it.status){
-                Status.SUCCESS->{
-                    user.firstName=it.data?.firstName.toString()
-                    user.lastName=it.data?.lastName.toString()
-                    user.height=it.data?.height!!
-                    user.weight=it.data?.weight
+            when (it.status) {
+                Status.SUCCESS -> {
+                    user.firstName = it.data?.firstName.toString()
+                    user.lastName = it.data?.lastName.toString()
+                    user.height = it.data?.height!!
+                    user.weight = it.data?.weight
                     tv_name.text = "${it.data?.firstName} ${it.data?.lastName}"
                     tv_weight.text = it.data?.weight.toString()
                     tv_height.text = it.data?.height.toString()
@@ -66,7 +60,7 @@ class ProfileFragment : BaseFragment() {
 
         })
 
-
+        showCommunication()
     }
 
     private fun getData(profileViewModel: ProfileViewModel) {
@@ -106,6 +100,14 @@ class ProfileFragment : BaseFragment() {
         )
         findNavController().navigate(direction)
 //        activity?.supportFragmentManager?.let { editFragment.show(it, "") }
+    }
+
+    private fun showCommunication() {
+        val commi = DaggerInstanceComponent.builder().build().getCommunication()
+
+        bt_communication.setOnClickListener {
+            activity?.supportFragmentManager?.let { commi.show(it, "") }
+        }
     }
 
 

@@ -4,6 +4,7 @@ import com.example.pregnancykotlin.calculator.CalculatorViewModel
 import com.example.pregnancykotlin.login.LoginViewModel
 import com.example.pregnancykotlin.main.MainViewModel
 import com.example.pregnancykotlin.profile.ProfileViewModel
+import com.example.pregnancykotlin.profile.view.CommunicationFragment
 import com.example.pregnancykotlin.profile.view.EditFragment
 import dagger.Component
 
@@ -14,4 +15,5 @@ interface InstanceComponent {
     fun getCalculatorViewModel(): CalculatorViewModel
     fun getProfileViewModel(): ProfileViewModel
     fun getEditFragment(): EditFragment
+    fun getCommunication(): CommunicationFragment
 }

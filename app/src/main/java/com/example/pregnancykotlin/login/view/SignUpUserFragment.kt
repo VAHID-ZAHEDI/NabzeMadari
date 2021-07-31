@@ -13,7 +13,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.pregnancykotlin.BaseActivity
 import com.example.pregnancykotlin.BaseFragment
-import com.example.pregnancykotlin.GlobalVariebles
+import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
@@ -121,13 +121,18 @@ class SignUpUserFragment : BaseFragment() {
                                                     .setContext(activity as Context)
                                                     .build().getSafePref()
                                                 msp.setSharedPreferences(
-                                                    GlobalVariebles.TOKEN,
+                                                    GlobalVariables.TOKEN,
                                                     "Bearer ${it.data.accessToken}"
                                                 )
                                                 msp.setSharedPreferences(
-                                                    GlobalVariebles.HAS_SIGN_IN,
+                                                    GlobalVariables.HAS_SIGN_IN,
                                                     true
                                                 )
+                                                msp.setSharedPreferences(
+                                                    GlobalVariables.PHONE_NUMBER,
+                                                    args.phoneNumber
+                                                )
+
                                                 val action =
                                                     SignUpUserFragmentDirections.actionSignUpUserFragmentToMainActivity()
 
