@@ -38,6 +38,7 @@ class ProfileFragment : BaseFragment() {
 
         bt_resources.setOnClickListener {
             Dialogs.showResourceDialog(activity as Context)
+            Toast.makeText(activity,"sgal",Toast.LENGTH_LONG).show()
         }
     }
 
