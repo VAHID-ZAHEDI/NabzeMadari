@@ -39,7 +39,6 @@ class BmiFragment : Fragment() {
         np_height.displayedValues = values.toTypedArray()
         np_height.maxValue = values.size - 1
         np_height.minValue = 0
-        np_height.
         np_height.typeface = Typeface.createFromAsset(activity?.assets,"Vazir.ttf")
         tv_height.text = values[0]
 //        height = values[0].toInt()

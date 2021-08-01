@@ -3,7 +3,6 @@ package com.example.pregnancykotlin.main.view
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +33,6 @@ import com.example.pregnancykotlin.utilities.Dialogs
 import com.google.android.material.tabs.TabLayout
 import com.like.LikeButton
 import com.like.OnLikeListener
-import com.sysdata.htmlspanner.HtmlSpanner
 import kotlinx.android.synthetic.main.fragment_show_content.*
 import kotlinx.android.synthetic.main.layout_error.*
 import org.sufficientlysecure.htmltextview.HtmlResImageGetter
@@ -48,7 +47,6 @@ class ShowContentFragment : BaseFragment() {
     private lateinit var content: Content
     private lateinit var contentId: String
     private lateinit var commentAdapter: CommentAdapter
-    private lateinit var htmlSpanner:HtmlSpanner
     private lateinit var adapter:BannerAdapter
 
 
@@ -56,7 +54,6 @@ class ShowContentFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         var view: View? = null
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         if (view == null) {
@@ -93,14 +90,14 @@ class ShowContentFragment : BaseFragment() {
     private fun getData() {
 //        htmlSpanner= HtmlSpanner(tv_text_html.currentTextColor, tv_text_html.textSize)
         mainViewModel!!.getContent(getToken(), args.subTopicId)
-            .observe(viewLifecycleOwner, {
+            .observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> stateLayout.loading()
                     Status.SUCCESS -> {
                         stateLayout.content()
                         toolbar.title = it.data?.title
-//                        collapsing_toolbar_layout.title = it.data?.title
-//                        tv_text_html.setHtml(it.data?.text?.replace("¬", " ‌‌")!!)
+        //                        collapsing_toolbar_layout.title = it.data?.title
+        //                        tv_text_html.setHtml(it.data?.text?.replace("¬", " ‌‌")!!)
                         content = it.data!!
                         contentId = it.data._id
                         bt_like.isLiked = content.userLike
@@ -117,7 +114,7 @@ class ShowContentFragment : BaseFragment() {
 
                 }
 
-            })
+            }
     }
 
     private fun manageLike() {

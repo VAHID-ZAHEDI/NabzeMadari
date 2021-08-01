@@ -67,7 +67,11 @@ allprojects {
         maven { url 'http://repo.pageturner-reader.org' }
         maven {
             url 'https://esri.jfrog.io/artifactory/arcgis'
+
         }
+        maven { url  'https://dl.bintray.com/sysdata/maven' }
+        maven { url 'http://repo.pageturner-reader.org' }
+        mavenCentral()
 
 
     }
@@ -142,7 +146,7 @@ dependencies {
 
     implementation 'com.zkk.view:ZkkRulerView:1.0.0'
     implementation 'com.zjun:rule-view:0.0.1'
-    implementation 'com.github.lany192:NumberPicker:1.0.4'
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
     implementation 'com.github.aliab:Persian-Date-Picker-Dialog:1.5.2'
     //banner slider
     implementation 'com.github.MoeidHeidari:banner:1.04'
@@ -162,7 +166,7 @@ dependencies {
     implementation 'com.jackandphantom.android:androidlikebutton:1.2.0'
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
-    def paging_version = "3.1.0"
+    def paging_version = "3.0.1"
 
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     // For Kotlin use paging-runtime-ktx
@@ -199,8 +203,9 @@ dependencies {
 
     implementation 'org.sufficientlysecure:html-textview:4.0'
     implementation 'com.github.SakaGamer:html-textview:1.0.8'
-    implementation 'it.sysdata.mobile:htmlspanner:1.0.2'
-    implementation 'net.sourceforge.htmlcleaner:htmlcleaner:2.16'
+//    implementation 'it.sysdata.mobile:htmlspanner:1.0.2'
+//    implementation 'net.sourceforge.htmlcleaner:htmlcleaner:2.16'
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 
 
 

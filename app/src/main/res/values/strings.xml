@@ -10,24 +10,13 @@
     <string name="testTitle" translatable="false">بهداشت فردی در بارداری</string>
     <string name="bmi_hint" translatable="false">✦ وزن حتما باید قبل از هفته 12 ام بارداری باشد!</string>
     <string name="Edd_hint" translatable="false">✦ لطفا تاریخ اولین روز از آخرین قاعدگی خود را وارد کنید!</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="titlealert">منابع</string>
-    <string name="dialogMessage">لیست منابع : </string>
-    <string name="title_home">خانه</string>
-    <string name="title_info">پروفایل</string>
-    <string name="search">جستجو</string>
-    <string name="testTitle">بهداشت فردی در بارداری</string>
-    <string name="bmi_hint">✦ وزن حتما باید قبل از هفته 12 ام بارداری باشد!</string>
-    <string name="Edd_hint">✦ لطفا تاریخ اولین روز از آخرین قاعدگی خود را وارد کنید!</string>
-    <string name="test">ه گزارش"ورزش سه"این کمی پس از آن بود که محبوب ترین بازیکن پرسپولیسی ها در چند دهه گذشته اقدام به آنفالوکردن مدیرتیم پرسپولیس کرده بود. افشین پیروانی مربی و کاپیتان سابقش که مشخص نیست با کدام دلیل واقعی مورد غضب علی کریمی قرار گرفته است. نکته عجیب ماجرا انتشار مجدد استوری تند علی کریمی در صفحه مهرداد میناوند بازیکن سابق پرسپولیس و از بلاگرهای مشهور این باشگاه بود.
-این در شرایطی است که هواداران پرسپولیس و اهالی فوتبال از رفاقت گرم بین این دو چهره پرسپولیسی باخبر بودند اما با انتشار این پست در صفحه میناوند مشخص شد او راهش را از پیروانی جدا کرده و در جبهه مقابل او قرار دارد.
 
-
-این در حالی است که میناوند در تلویزیون پرسپولیس به اجرا و تفسیر بازی ها مشغول است و به نوعی از چهره های وابسته به باشگاه به شمار می آید و موضعگیری اینچنینی در شرایطی که افشین پیروانی یکی از مهره های مهم باشگاه محسوب می شود عجیب و حتی باورنکردنی است.
-
-
-جالب اینکه میناوند خود در زمانی متهم بود که برای حضور افشین پیروانی در سمت مدیریت تیم فوتبال پرسپولیس به محسن خلیلی مدیرقبلی اتهامات خیالی وارد کرده و حالا مشخص نیست چه اتفاقی رخ داده که او هم به جبهه مقابل پیروانی پیوسته است. چهره ای که سال گذشته و پس از جایگزینی به جای خلیلی به مرور توانایی و کارایی خود را در ای سمت نشان داد و در بزنگاهی مثل مسابقه پرسپولیس –سپاهان با عملکردی سختگیرانه تبدیل به یکی از عوامل مهم این برد انضباطی شد.
-
+<!--    <string name="title_home">خانه</string>-->
+<!--    <string name="title_info">پروفایل</string>-->
+<!--    <string name="search">جستجو</string>-->
+<!--    <string name="testTitle">بهداشت فردی در بارداری</string>-->
+<!--    <string name="bmi_hint">✦ وزن حتما باید قبل از هفته 12 ام بارداری باشد!</string>-->
+<!--    <string name="Edd_hint">✦ لطفا تاریخ اولین روز از آخرین قاعدگی خود را وارد کنید!</string>-->
 
     <string name="vazir" translatable="false">vazir.ttf</string>
     <string name="comment_role" translatable="false">لطفا متن مورد نظر خود را با رعایت شئونات در کادر پایین بنویسید</string>
@@ -94,10 +83,10 @@
     <string name="app_intro_image_content_description" tools:ignore="MissingTranslation">graphics</string>
 
 
-    <string name="intro_Title">
-    <font size="0">Text in bigger font size 20..</font>
-</string>
-    <string name="error_message">مشکلی رخ داده است.لطفا اتصال خود را بررسی و مجددا تلاش کنید!</string>
-    <string name="htmltest"><![CDATA[Foo Bar <a href="foo?id=%s">baz</a> is cool]]></string>
-    <string name="intro">اپلیکیشن آمادگی برای زایمان، طبق دستورالعمل وزارت بهداشت، درمان و آموزش پزشکی و زیر نظر دانشگاه علوم پزشکی ایران طراحی شده و بلافاصله پس از اطلاع از بارداری قابل استفاده میباشد؛ همچنین اپلیکیشن حاضر دارای آخرین اطلاعات مربوط به اپیدمی COVID-19 در دوران بارداری، زایمان و شیردهی میباشد</string>
+<!--    <string name="intro_Title">-->
+<!--    <font size="0">Text in bigger font size 20..</font>-->
+<!--</string>-->
+    <string name="error_message" translatable="false">مشکلی رخ داده است.لطفا اتصال خود را بررسی و مجددا تلاش کنید!</string>
+    <string name="htmltest" translatable="false"><![CDATA[Foo Bar <a href="foo?id=%s">baz</a> is cool]]></string>
+    <string name="intro" translatable="false">اپلیکیشن آمادگی برای زایمان، طبق دستورالعمل وزارت بهداشت، درمان و آموزش پزشکی و زیر نظر دانشگاه علوم پزشکی ایران طراحی شده و بلافاصله پس از اطلاع از بارداری قابل استفاده میباشد؛ همچنین اپلیکیشن حاضر دارای آخرین اطلاعات مربوط به اپیدمی COVID-19 در دوران بارداری، زایمان و شیردهی میباشد</string>
 </resources>

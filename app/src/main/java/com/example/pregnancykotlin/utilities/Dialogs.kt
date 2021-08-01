@@ -52,7 +52,7 @@ object Dialogs {
 
         //set title for alert dialog
         builder.setView(view)
-        builder.setTitle(R.string.titlealert)
+//        builder.setTitle(R.string.titlealert)
         //set message for alert dialog
         builder.setIcon(R.drawable.ic_books_stack_of_three)
 
