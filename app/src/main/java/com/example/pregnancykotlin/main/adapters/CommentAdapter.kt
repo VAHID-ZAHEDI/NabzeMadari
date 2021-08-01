@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.models.Comment
-import kotlinx.android.synthetic.main.fragment_show_content.view.tv_text
 import kotlinx.android.synthetic.main.item_comment.view.*
 
 
@@ -25,7 +24,7 @@ class CommentAdapter : PagedListAdapter<Comment, CommentAdapter.CommentViewHolde
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        holder.itemView.tv_text.text = getItem(position)?.text
+        holder.itemView.tv_comment_text.text = getItem(position)?.text
         holder.itemView.tv_name.text = getItem(position)?.userName
     }
 

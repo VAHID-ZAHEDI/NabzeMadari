@@ -1,13 +1,11 @@
 package com.example.pregnancykotlin.login
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pregnancykotlin.login.remote.Resource
-import com.example.pregnancykotlin.models.ErrorTest
 import com.example.pregnancykotlin.models.SmsCode
 import com.example.pregnancykotlin.models.TokenInfo
 import com.example.pregnancykotlin.models.User
+import com.example.pregnancykotlin.utilities.Resource
 import handleErrorBody
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,9 +36,10 @@ class LoginViewModel @Inject constructor() : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    result.value = Resource.error(ErrorTest(400, ""))
+                    result.value = Resource.error(e.handleErrorBody())
                 }
             })
+
         return result
     }
 
@@ -58,14 +57,7 @@ class LoginViewModel @Inject constructor() : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-//                    if (e is HttpException) {
-//                        val body = e.response()?.errorBody()
-//                        val gson = Gson()
-//                        val adapter: TypeAdapter<ErrorTest> =
-//                            gson.getAdapter(ErrorTest::class.java)
-//                        val errorBody: ErrorTest = adapter.fromJson(body!!.string())
-//                        result.value = Resource.error(errorBody)
-//                    }
+
                     result.value = Resource.error(e.handleErrorBody())
                 }
             })

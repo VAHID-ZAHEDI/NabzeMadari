@@ -1,12 +1,14 @@
 package com.example.pregnancykotlin.main.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pregnancykotlin.GlobalVariebles
+import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.main.view.SubTopicFragmentDirections
 import com.example.pregnancykotlin.models.SubTopic
@@ -31,7 +33,7 @@ class SubTopicAdapter(var subtoics: ArrayList<SubTopic>) :
         holder.itemView.cl_header.gradientColor(subtoics[position].gradientColor)
         Picasso
             .get()
-            .load("${GlobalVariebles.FILE_URL}${subtoics[position].imagePath}")
+            .load("${GlobalVariables.FILE_URL}${subtoics[position].imagePath}")
             .into(holder.itemView.iv_topic)
         var str: String? = ""
         if (subtoics[position].description != null) {

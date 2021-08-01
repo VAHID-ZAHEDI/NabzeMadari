@@ -59,8 +59,10 @@
                     android:id="@+id/tv_date"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:layout_width="wrap_content"
+                    android:textSize="16sp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="right"
+                    android:layout_margin="5dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/white" />
 
@@ -81,7 +83,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_baby2"
+                app:srcCompat="@drawable/ic_baby2"
                 android:layout_gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

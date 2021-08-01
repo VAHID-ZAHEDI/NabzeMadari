@@ -120,40 +120,43 @@
 
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center">
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    app:layout_collapseMode="pin"
-                    app:tabGravity="center"
-                    app:tabMode="scrollable"
-                    android:gravity="bottom|center_horizontal"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:animateLayoutChanges="true"
-                    android:background="@drawable/tab_back"
-                    android:elevation="7dp"
-                    android:layoutAnimation="@anim/layout_animation"
-                    android:layoutDirection="rtl"
-                    android:textDirection="rtl"
-                    app:tabIndicator="@drawable/tab_selected"
-                    app:tabIndicatorAnimationDuration="500"
-                    app:tabIndicatorColor="@color/blue"
-                    app:tabIndicatorGravity="stretch"
-                    app:tabInlineLabel="true"
-                    android:layout_gravity="right"
-                    app:tabRippleColor="@null"
-                    app:tabSelectedTextColor="@color/white"
-                    app:tabTextAppearance="@style/TabTextAppearance"
-                    app:tabTextColor="@color/gray_text_faded">
 
 
-                </com.google.android.material.tabs.TabLayout>
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:animateLayoutChanges="true"
+                        android:background="@drawable/tab_back"
+                        android:elevation="7dp"
+                        android:gravity="bottom|center_horizontal"
+                        android:layoutAnimation="@anim/layout_animation"
+                        android:layoutDirection="rtl"
+                        android:textDirection="rtl"
+                        app:layout_collapseMode="pin"
+                        app:tabGravity="center"
+                        app:tabIndicator="@drawable/tab_selected"
+                        app:tabIndicatorAnimationDuration="500"
+                        app:tabIndicatorColor="@color/blue"
+                        app:tabIndicatorGravity="stretch"
+                        app:tabInlineLabel="true"
+                        app:tabMode="scrollable"
+                        app:tabRippleColor="@null"
+                        app:tabSelectedTextColor="@color/white"
+                        app:tabTextAppearance="@style/TabTextAppearance"
+                        app:tabTextColor="@color/gray_text_faded">
+
+
+                    </com.google.android.material.tabs.TabLayout>
                 </LinearLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -173,12 +176,18 @@
                     android:orientation="vertical">
 
 
-                    <TextView
-                        android:id="@+id/tv_text"
+                    <org.sufficientlysecure.htmltextview.HtmlTextView
+                        android:id="@+id/tv_text_html"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:lineSpacingExtra="7dp" />
+                        android:layout_margin="7dp"
+                        android:layout_marginHorizontal="62dp"
+                        android:gravity="right"
+                        android:lineSpacingExtra="7dp"
+                        android:padding="5dp"
+                        android:textColor="#212121"
+                        android:textDirection="rtl"
+                        android:textSize="15sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

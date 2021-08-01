@@ -255,6 +255,7 @@
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
+                            app:iconTint="@color/gray_text_faded"
                             android:backgroundTint="@color/white"
                             android:gravity="right|center_vertical"
                             android:text="09396985633"
@@ -268,22 +269,23 @@
                             app:layout_constraintVertical_bias="0.110000014"
                             app:rippleColor="@color/colorPrimary" />
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/bt_resources"
+                            android:id="@+id/bt_communication"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="match_parent"
                             android:layout_height="70dp"
+                            app:iconTint="@color/gray_text_faded"
                             android:backgroundTint="@color/white"
                             android:gravity="right|center_vertical"
-                            android:text="منابع"
+                            android:text="ارتباط با ما"
                             android:textColor="@color/gray_text_faded"
                             android:textSize="15sp"
-                            app:icon="@drawable/ic_books_stack_of_three"
+                            app:icon="@drawable/communication"
                             app:iconGravity="end"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintVertical_bias="0.110000014"
-                            app:rippleColor="@color/colorPrimary"/>
+                            app:rippleColor="@color/colorPrimary" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

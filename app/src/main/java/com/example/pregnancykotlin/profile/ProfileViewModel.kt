@@ -2,9 +2,9 @@ package com.example.pregnancykotlin.profile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pregnancykotlin.login.remote.Resource
+import com.example.pregnancykotlin.utilities.Resource
 import com.example.pregnancykotlin.models.Content
-import com.example.pregnancykotlin.models.ErrorTest
+import com.example.pregnancykotlin.models.Errors
 import com.example.pregnancykotlin.models.User
 import handleErrorBody
 import io.reactivex.SingleObserver
@@ -35,7 +35,7 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    user.value = Resource.error(ErrorTest(430, e.message.toString()))
+                    user.value = Resource.error(Errors(430, e.message.toString()))
                 }
             })
 

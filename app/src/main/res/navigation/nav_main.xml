@@ -54,7 +54,7 @@
             app:destination="@id/mainFragment" />
         <action
             android:id="@+id/action_categoryFragment_to_subHeaderFragment"
-            app:destination="@id/subHeaderFragment" />
+            app:destination="@id/subTopicFragment" />
     </fragment>
     <fragment
         android:id="@+id/calculatorFragment"
@@ -62,7 +62,7 @@
         android:label="fragment_calculator"
         tools:layout="@layout/fragment_calculator" />
     <fragment
-        android:id="@+id/subHeaderFragment"
+        android:id="@+id/subTopicFragment"
         android:name="com.example.pregnancykotlin.main.view.SubTopicFragment"
         android:label="fragment_sub_header"
         tools:layout="@layout/fragment_sub_topic" >

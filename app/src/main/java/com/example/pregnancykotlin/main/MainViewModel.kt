@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.example.pregnancykotlin.login.remote.Resource
+import com.example.pregnancykotlin.utilities.Resource
 import com.example.pregnancykotlin.main.adapters.CommentPagingDataSourceFactory
 import com.example.pregnancykotlin.models.*
 import handleErrorBody
@@ -15,7 +15,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import retrofit2.HttpException
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
@@ -27,14 +26,12 @@ class MainViewModel @Inject constructor() : ViewModel() {
     fun getAllTopics(token: String): MutableLiveData<Resource<List<Topic>>> {
         var result: MutableLiveData<Resource<List<Topic>>> = MutableLiveData()
         result.value = Resource.loading()
-        Log.d("myToken", "getAllTopics: $token")
         mainRepository.apiMainDataSource.getAllTopic(token)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe(object : SingleObserver<List<Topic>> {
                 override fun onSuccess(topics: List<Topic>) {
                     result.value = Resource.success(topics)
-                    Log.d("myTopic", "onViewCreated: ${topics.size}")
 
                 }
 
@@ -44,7 +41,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
 
                 override fun onError(e: Throwable) {
                     Log.d("myTopic", "ERROR: ${e.message}")
-                    result.value = Resource.error(ErrorTest(400, ""))
+                    result.value = Resource.error(Errors(400, ""))
                 }
             })
         return result
@@ -69,7 +66,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
                 }
 
                 override fun onError(e: Throwable) {
-                    result.value = Resource.error(ErrorTest(400, e.message.toString()))
+                    result.value = Resource.error(Errors(400, e.message.toString()))
                 }
             })
 
@@ -119,7 +116,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
                 override fun onError(e: Throwable) {
                     Log.d("ddd", "${e.message}")
 
-                    result.value = Resource.error(ErrorTest(430, ""))
+                    result.value = Resource.error(Errors(430, ""))
                 }
             }
             )

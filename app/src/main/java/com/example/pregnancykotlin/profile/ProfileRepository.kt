@@ -7,6 +7,7 @@ import io.reactivex.Single
 
 class ProfileRepository : ProfileDataSource {
     var apiProfileDataSource = ApiProfileDataSource()
+
     override fun getUserInfo(token: String): Single<User>? {
         return apiProfileDataSource.getUserInfo(token)
     }
