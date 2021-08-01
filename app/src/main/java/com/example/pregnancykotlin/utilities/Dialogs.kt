@@ -31,14 +31,14 @@ object Dialogs {
     }
 
     fun showWriteCommentDialog(context: Context): MutableLiveData<String> {
-        var et_comment:EditText
+        var et_comment: EditText
         var onSendComment: MutableLiveData<String> = MutableLiveData()
         val builder: MaterialAlertDialogBuilder = MaterialAlertDialogBuilder(context)
-        var view=LayoutInflater.from(context).inflate(R.layout.dialog_comment,null,false)
+        var view = LayoutInflater.from(context).inflate(R.layout.dialog_comment, null, false)
         builder.setView(view)
-        et_comment=view.findViewById(R.id.et_comment)
+        et_comment = view.findViewById(R.id.et_comment)
         builder.setPositiveButton("ثبت دیدگاه", DialogInterface.OnClickListener { _, _ ->
-            onSendComment.value =et_comment.text.toString()
+            onSendComment.value = et_comment.text.toString()
         })
         builder.setNegativeButton("بستن") { _, _ ->
 
@@ -46,22 +46,25 @@ object Dialogs {
         builder.show()
         return onSendComment
     }
-    fun showResourceDialog(context :Context){
-         var builder :AlertDialog.Builder=AlertDialog.Builder(context)
-        var view=LayoutInflater.from(context).inflate(R.layout.dialog_resource,null,false)
+
+    fun showResourceDialog(context: Context) {
+        var builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        var view = LayoutInflater.from(context).inflate(R.layout.dialog_resource, null, false)
 
         //set title for alert dialog
         builder.setView(view)
-//        builder.setTitle(R.string.titlealert)
-        //set message for alert dialog
+//      builder.setTitle(R.string.titlealert)
         builder.setIcon(R.drawable.ic_books_stack_of_three)
 
-        builder.setNegativeButton("No"){dialogInterface, which ->
-            Toast.makeText(context,"clicked No", Toast.LENGTH_LONG).show()
+        //set message for alert dialog
+        builder.setMessage(R.string.resources)
+
+        builder.setNegativeButton("بستن") { dialogInterface, which ->
+
         }
         // Create the AlertDialog
         // Set other dialog properties
-        dialog=builder.create()
+        dialog = builder.create()
         dialog.setCancelable(true)
         dialog.show()
     }

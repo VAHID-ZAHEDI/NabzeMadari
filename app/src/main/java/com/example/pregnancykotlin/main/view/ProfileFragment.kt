@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 //import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,7 @@ import com.example.pregnancykotlin.utilities.Dialogs
 import gradientColor
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.layout_error.*
+import kotlin.math.log
 
 
 class ProfileFragment : BaseFragment() {
@@ -37,8 +39,9 @@ class ProfileFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_profile, container, false)
 
         bt_resources.setOnClickListener {
-            Dialogs.showResourceDialog(activity as Context)
+            //Dialogs.showResourceDialog(activity as Context)
             Toast.makeText(activity,"sgal",Toast.LENGTH_LONG).show()
+            Log.d("alerting","True")
         }
     }
 
@@ -55,6 +58,9 @@ class ProfileFragment : BaseFragment() {
 
         iv_edit.setOnClickListener {
             showBottomSheet()
+        }
+        bt_resources.setOnClickListener {
+            Dialogs.showResourceDialog(activity as Context)
         }
 
         model.userLiveData.observe(viewLifecycleOwner, Observer {

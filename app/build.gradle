@@ -110,7 +110,8 @@ dependencies {
 
     implementation 'com.vicmikhailau:MaskedEditText:3.0.4'
 //jetpack navigation
-    def nav_version = "2.3.5"
+    def nav_version = "2.3.0"
+
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -118,7 +119,8 @@ dependencies {
     implementation 'io.github.inflationx:calligraphy3:3.1.1'
     implementation 'io.github.inflationx:viewpump:2.0.3'
     def lifecycle_version = "2.2.0"
-    def arch_version = "2.3.1"
+    def arch_version = "2.2.0"
+
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     // LiveData
