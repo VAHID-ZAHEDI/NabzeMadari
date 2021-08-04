@@ -1,5 +1,6 @@
 package com.example.pregnancykotlin.main.view
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.pregnancykotlin.enum.Status
 import com.example.pregnancykotlin.main.MainViewModel
 import com.example.pregnancykotlin.main.adapters.MainTopicAdapter
 import com.example.pregnancykotlin.models.Topic
+import com.example.pregnancykotlin.utilities.Dialogs
 import kotlinx.android.synthetic.main.fragment_category.*
 import kotlinx.android.synthetic.main.layout_error.*
 

@@ -1,5 +1,6 @@
 package com.example.pregnancykotlin.utilities
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
@@ -58,6 +59,28 @@ object Dialogs {
 
         //set message for alert dialog
         builder.setMessage(R.string.resources)
+
+        builder.setNegativeButton("بستن") { dialogInterface, which ->
+
+        }
+        // Create the AlertDialog
+        // Set other dialog properties
+        dialog = builder.create()
+        dialog.setCancelable(true)
+        dialog.show()
+    }
+    @SuppressLint("ResourceType")
+    fun showPictureDialog(context: Context) {
+        var builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        var view = LayoutInflater.from(context).inflate(R.layout.picture_layout, null, false)
+
+        //set title for alert dialog
+        builder.setView(view)
+//      builder.setTitle(R.string.titlealert)
+        //builder.setIcon(R.drawable.ic_books_stack_of_three)
+
+        //set message for alert dialog
+        //builder.setMessage(null)
 
         builder.setNegativeButton("بستن") { dialogInterface, which ->
 

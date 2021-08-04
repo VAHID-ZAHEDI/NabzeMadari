@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //Dialogs.showPictureDialog(activity as Context)
         initToolbar(toolbar, false)
         findNavController(R.id.nav_host_fragment)
             .setGraph(R.navigation.nav_main, intent.extras)
@@ -33,7 +33,6 @@ class MainActivity : BaseActivity() {
             .useFadeAnimation()// optional but starting animations immediately in onCreate can make them choppy
             .singleUse("calculator") // provide a unique ID used to ensure it is only shown once
             .show()
-
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
