@@ -1,16 +1,14 @@
 package com.example.pregnancykotlin.main.adapters
 
 import android.content.Context
-import android.util.Log
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
-import com.example.pregnancykotlin.main.view.SubTopicFragmentDirections
+import com.example.pregnancykotlin.main.view.DetailsActivity
 import com.example.pregnancykotlin.models.SubTopic
 import com.squareup.picasso.Picasso
 import gradientColor
@@ -46,10 +44,12 @@ class SubTopicAdapter(var subtoics: ArrayList<SubTopic>) :
         holder.itemView.tv_likeCount.text = subtoics[position].likeCount.toString()
         holder.itemView.setOnClickListener {
 //            it.findNavController().navigate(R.id.action_subHeaderFragment_to_nav_details)
-            val directions =
-                SubTopicFragmentDirections.actionSubHeaderFragmentToDetailsActivity(subtoics[position]._id)
-            it.findNavController().navigate(directions)
-//            context?.startActivity(Intent(context, DetailsActivity::class.java))
+//            val directions =
+//                SubTopicFragmentDirections.actionSubHeaderFragmentToDetailsActivity(subtoics[position]._id)
+//            it.findNavController().navigate(directions)
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra(GlobalVariables.SUB_TOPIC_ID, subtoics[position]._id)
+            context?.startActivity(intent)
         }
 
 

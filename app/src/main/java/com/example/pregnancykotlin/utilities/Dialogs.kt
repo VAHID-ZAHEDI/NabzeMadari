@@ -1,17 +1,22 @@
 package com.example.pregnancykotlin.utilities
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.WindowManager
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.MutableLiveData
 import com.example.pregnancykotlin.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.labters.lottiealertdialoglibrary.DialogTypes
 import com.labters.lottiealertdialoglibrary.LottieAlertDialog
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.dialog_photo_view.*
 
 object Dialogs {
     private lateinit var alertDialog: LottieAlertDialog
@@ -52,43 +57,32 @@ object Dialogs {
         var builder: AlertDialog.Builder = AlertDialog.Builder(context)
         var view = LayoutInflater.from(context).inflate(R.layout.dialog_resource, null, false)
 
-        //set title for alert dialog
         builder.setView(view)
-//      builder.setTitle(R.string.titlealert)
         builder.setIcon(R.drawable.ic_books_stack_of_three)
 
-        //set message for alert dialog
         builder.setMessage(R.string.resources)
 
         builder.setNegativeButton("بستن") { dialogInterface, which ->
 
         }
-        // Create the AlertDialog
-        // Set other dialog properties
         dialog = builder.create()
         dialog.setCancelable(true)
         dialog.show()
     }
+
     @SuppressLint("ResourceType")
-    fun showPictureDialog(context: Context) {
-        var builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        var view = LayoutInflater.from(context).inflate(R.layout.picture_layout, null, false)
-
-        //set title for alert dialog
-        builder.setView(view)
-//      builder.setTitle(R.string.titlealert)
-        //builder.setIcon(R.drawable.ic_books_stack_of_three)
-
-        //set message for alert dialog
-        //builder.setMessage(null)
-
-        builder.setNegativeButton("بستن") { dialogInterface, which ->
-
-        }
-        // Create the AlertDialog
-        // Set other dialog properties
-        dialog = builder.create()
+    fun showPictureDialog(context: Context, img: String) {
+        var dialog = Dialog(context)
+        dialog.setContentView(R.layout.dialog_photo_view)
+        Picasso.get().load(img).into(dialog.pv_img)
         dialog.setCancelable(true)
+        var window = dialog.window
+        window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT
+        );
+//        window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        window?.setBackgroundDrawable(ColorDrawable(R.color.black_transparent));
         dialog.show()
     }
 }

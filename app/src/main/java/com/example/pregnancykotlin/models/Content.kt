@@ -8,5 +8,6 @@ data class Content(
     var text: String,
     var subContentIds: List<String>,
     var subContents: ArrayList<SubContent>,
-    var userLike: Boolean
+    var userLike: Boolean,
+    var gradientColor: List<String>,
 )

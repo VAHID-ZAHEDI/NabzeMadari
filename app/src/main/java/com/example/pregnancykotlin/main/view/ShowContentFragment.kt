@@ -11,7 +11,6 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +18,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.pregnancykotlin.BaseActivity
 import com.example.pregnancykotlin.BaseFragment
+import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
@@ -35,19 +35,20 @@ import com.like.LikeButton
 import com.like.OnLikeListener
 import kotlinx.android.synthetic.main.fragment_show_content.*
 import kotlinx.android.synthetic.main.layout_error.*
-import org.sufficientlysecure.htmltextview.HtmlResImageGetter
 import startFadeIn
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView
 import kotlin.math.abs
 
 
 class ShowContentFragment : BaseFragment() {
-    private val args: DetailsActivityArgs by navArgs()
+    //    private val args: DetailsActivityArgs by navArgs()
+    private var subTopicId: String? = null
+
     private var mainViewModel: MainViewModel? = null
     private lateinit var content: Content
     private lateinit var contentId: String
     private lateinit var commentAdapter: CommentAdapter
-    private lateinit var adapter:BannerAdapter
+    private lateinit var adapter: BannerAdapter
 
 
     override fun onCreateView(
@@ -71,6 +72,7 @@ class ShowContentFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        subTopicId = activity?.intent?.getStringExtra(GlobalVariables.SUB_TOPIC_ID)
         (activity as BaseActivity).initToolbar(toolbar, true)
         if (mainViewModel == null) {
             mainViewModel = DaggerInstanceComponent.builder().build().getMainViewModel()
@@ -89,15 +91,15 @@ class ShowContentFragment : BaseFragment() {
 
     private fun getData() {
 //        htmlSpanner= HtmlSpanner(tv_text_html.currentTextColor, tv_text_html.textSize)
-        mainViewModel!!.getContent(getToken(), args.subTopicId)
+        mainViewModel!!.getContent(getToken(), subTopicId!!)
             .observe(viewLifecycleOwner) {
                 when (it.status) {
                     Status.LOADING -> stateLayout.loading()
                     Status.SUCCESS -> {
                         stateLayout.content()
                         toolbar.title = it.data?.title
-        //                        collapsing_toolbar_layout.title = it.data?.title
-        //                        tv_text_html.setHtml(it.data?.text?.replace("¬", " ‌‌")!!)
+                        //                        collapsing_toolbar_layout.title = it.data?.title
+                        //                        tv_text_html.setHtml(it.data?.text?.replace("¬", " ‌‌")!!)
                         content = it.data!!
                         contentId = it.data._id
                         bt_like.isLiked = content.userLike
@@ -171,7 +173,7 @@ class ShowContentFragment : BaseFragment() {
     }
 
     private fun setupViewPager(bannerData: ArrayList<Media>?) {
-         adapter = BannerAdapter(bannerData!!)
+        adapter = BannerAdapter(bannerData!!)
         vp_banner.startFadeIn()
         vp_banner.adapter = adapter
         vp_banner.clipToPadding = false
@@ -288,7 +290,7 @@ class ShowContentFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        adapter.stop()
+//        adapter.stop()
 
     }
 

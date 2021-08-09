@@ -4,11 +4,12 @@ import android.R.attr.thumb
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.main.view.ShowContentFragmentDirections
 import com.example.pregnancykotlin.models.Media
 import com.example.pregnancykotlin.models.MediaType
+import com.example.pregnancykotlin.utilities.Dialogs
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_banner.view.*
 
@@ -32,7 +34,7 @@ class BannerAdapter(bannerData: ArrayList<Media>) :
     private val mediaPlayer = MediaPlayer()
     private var length: Int = 0
     private var prePostion = 0
-    private  var musicUrl: String?=null
+    private var musicUrl: String? = null
 
     class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -44,6 +46,7 @@ class BannerAdapter(bannerData: ArrayList<Media>) :
         return BannerViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBindViewHolder(holder: BannerViewHolder, position: Int) {
 
         when (bannerData[position].mediaType) {
@@ -55,6 +58,12 @@ class BannerAdapter(bannerData: ArrayList<Media>) :
                     .get()
                     .load("${GlobalVariables.FILE_URL}${bannerData[position].url}")
                     .into(holder.itemView.iv_slider)
+                holder.itemView.setOnClickListener {
+                    Dialogs.showPictureDialog(
+                        context!!,
+                        GlobalVariables.FILE_URL + bannerData[position].url
+                    )
+                }
 
             }
             MediaType.VIDEO -> {
@@ -106,6 +115,7 @@ class BannerAdapter(bannerData: ArrayList<Media>) :
                 }
 
             }
+
         }
     }
 
@@ -113,6 +123,7 @@ class BannerAdapter(bannerData: ArrayList<Media>) :
         return bannerData.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun playMusic(url: String) {
 
         mediaPlayer.apply {

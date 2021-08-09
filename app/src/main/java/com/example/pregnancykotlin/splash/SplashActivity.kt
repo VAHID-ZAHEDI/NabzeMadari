@@ -9,8 +9,8 @@ import com.example.pregnancykotlin.BaseActivity
 import com.example.pregnancykotlin.GlobalVariables
 import com.example.pregnancykotlin.R
 import com.example.pregnancykotlin.di.component.DaggerPregnancyComponent
+import com.example.pregnancykotlin.main.view.MainActivity
 import com.example.pregnancykotlin.utilities.PrefObject
-import com.readystatesoftware.chuck.internal.ui.MainActivity
 import java.util.*
 
 class SplashActivity : BaseActivity() {
@@ -40,7 +40,6 @@ class SplashActivity : BaseActivity() {
 
         Timer().schedule(object : TimerTask() {
             override fun run() {
-                Log.d("aaaaaaa", "run: ")
                 Toast.makeText(this@SplashActivity, "www", Toast.LENGTH_SHORT).show()
             }
         }, 2000)

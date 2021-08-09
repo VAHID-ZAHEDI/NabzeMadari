@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_showContentFragment_to_videoPlayerActivity"
             app:destination="@id/videoPlayerActivity" />
+        <argument
+            android:name="subTopic_id"
+            app:argType="string" />
     </fragment>
     <activity
         android:id="@+id/videoPlayerActivity"
