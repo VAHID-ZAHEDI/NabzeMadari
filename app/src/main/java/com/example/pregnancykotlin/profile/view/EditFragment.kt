@@ -1,6 +1,7 @@
 package com.example.pregnancykotlin.profile.view
 
 import android.content.Context
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.pregnancykotlin.models.User
 import com.example.pregnancykotlin.profile.ProfileViewModel
 import com.example.pregnancykotlin.utilities.Dialogs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.fragment_bmi.*
 import kotlinx.android.synthetic.main.fragment_edit.*
 import javax.inject.Inject
 
@@ -54,6 +56,8 @@ class EditFragment @Inject constructor() : BottomSheetDialogFragment() {
         np_height_reg.maxValue = values.size - 1
         np_height_reg.minValue = 0
         np_height_reg.value = args.height
+        np_height_reg.typeface = Typeface.createFromAsset(activity?.assets,"Vazir.ttf")
+        np_height_reg.setSelectedTypeface(Typeface.createFromAsset(activity?.assets,"Vazir.ttf"))
         np_height_reg.setOnValueChangedListener { picker, oldVal, newVal ->
             tv_height_reg.text = values[newVal]
             height = (values[newVal].replace(" سانتی متر ", "")).toInt()
