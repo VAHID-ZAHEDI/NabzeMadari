@@ -2,6 +2,7 @@ package com.example.pregnancykotlin.main.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,14 +48,22 @@ class SearchAdapter(var context: Context, var contents: List<Content>) :
 //            val directions =
 //                SubTopicFragmentDirections.actionSubHeaderFragmentToDetailsActivity(subtoics[position]._id)
 //            it.findNavController().navigate(directions)
+            Log.d("ppp", "onBindViewHolder: "+contents[position]._id)
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra(GlobalVariables.SUB_TOPIC_ID, contents[position]._id)
+            intent.putExtra(GlobalVariables.SUB_TOPIC_ID, contents[position].subTopicId)
             context?.startActivity(intent)
         }
-
+//        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
         return contents.size
+    }
+
+
+     fun updateRecyclerView(list: List<Content>){
+        contents=list
+        notifyDataSetChanged()
+
     }
 }

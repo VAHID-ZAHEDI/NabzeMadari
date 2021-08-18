@@ -11,6 +11,7 @@
         android:id="@+id/floatingSearchView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+
         android:textDirection="rtl"
         app:floatingSearch_searchHint="جستجو..."
         app:layout_constraintTop_toTopOf="parent" />

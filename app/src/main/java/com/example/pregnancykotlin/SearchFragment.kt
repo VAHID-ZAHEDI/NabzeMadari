@@ -2,11 +2,13 @@ package com.example.pregnancykotlin
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.arlib.floatingsearchview.FloatingSearchView
 import com.example.pregnancykotlin.di.component.DaggerInstanceComponent
 import com.example.pregnancykotlin.enum.Status
 import com.example.pregnancykotlin.main.adapters.SearchAdapter
@@ -15,10 +17,15 @@ import kotlinx.android.synthetic.main.fragment_search.*
 
 class SearchFragment : BaseFragment() {
     private lateinit var contents: List<Content>
+    var templist: ArrayList<Content> = ArrayList()
+    private lateinit var searchAdapter: SearchAdapter
+
+    //    private lateinit var templist:List<Content>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -44,13 +51,38 @@ class SearchFragment : BaseFragment() {
                     rv_search.apply {
                         layoutManager = LinearLayoutManager(activity)
                         hasFixedSize()
-                        adapter = SearchAdapter(activity as Context, contents)
+                        searchAdapter = SearchAdapter(activity as Context, contents)
+                        adapter = searchAdapter
                     }
+                    search()
 
                 }
             }
 
         })
     }
+
+    private fun search() {
+
+        floatingSearchView.setOnQueryChangeListener { oldQuery, newQuery ->
+            Log.d("bbbz", "search: "+contents.size)
+            templist.clear()
+            for (content in contents) {
+
+                    if (content.title.contains(newQuery) ) {
+
+                        templist.add(content)
+//                        Log.d("ooos", "search: " + content.title)
+                    searchAdapter.updateRecyclerView(templist)
+                        Log.d("zzz", "search: " + templist.size)
+
+
+                    }
+
+                }
+            }
+
+    }
+
 
 }
